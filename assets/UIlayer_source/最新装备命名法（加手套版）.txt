@@ -1,0 +1,22 @@
+
+装备命名： 
+衣服后缀：
+_yifuSTL ：--上左肩膀
+_yifuSTR ：--上右肩膀
+_yifuLL	 ：--左裤腿
+_yifuLR  ：--右裤腿
+
+
+鞋子后缀：
+_shoesL ：左鞋子
+_shoesR ：右鞋子
+
+手套后缀：
+_gloveL : 左手套
+_gloveR : 右手套
+策划在更改名字的时候需要把里面的
+armature_data对应的name
+animation_data对应的name一起改掉。
+
+
+	

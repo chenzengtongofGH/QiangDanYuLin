@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="10" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="dibiao1" tilewidth="64" tileheight="64">
+  <image source="dibiao1.png" width="256" height="128"/>
+ </tileset>
+ <tileset firstgid="9" name="dibiaoshang" tilewidth="64" tileheight="64">
+  <image source="dibiaoshang.png" width="256" height="65"/>
+ </tileset>
+ <layer name="downlayer" width="30" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFXACMRMQMyMhYYBXHxkcSYi9MNoEGYFYjYgZsdCwwAuPrI4GxH6YTQIAwBPaADN
+  </data>
+ </layer>
+ <objectgroup name="relayup" width="30" height="10">
+  <object x="512" y="320"/>
+  <object x="768" y="256"/>
+  <object x="1088" y="320"/>
+  <object x="1536" y="256"/>
+ </objectgroup>
+ <objectgroup name="place" width="30" height="10"/>
+ <objectgroup name="floor" width="30" height="10">
+  <object x="1" y="540" width="449" height="100"/>
+  <object x="572" y="540" width="136" height="104"/>
+  <object x="832" y="541" width="257" height="97"/>
+  <object x="1152" y="539" width="320" height="101"/>
+  <object x="1601" y="543" width="319" height="97"/>
+ </objectgroup>
+</map>

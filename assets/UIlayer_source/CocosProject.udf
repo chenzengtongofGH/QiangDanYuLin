@@ -1,0 +1,51 @@
+<UserData Version="2.3.3.0">
+  <Properties>
+    <Item Key="CocosRecentOperation">
+      <Value ctype="CocosRecentOperation">
+        <LastPublishType Value="Resource" />
+        <IsLastPublish Value="True" />
+        <LastRunType Value="Windows" />
+      </Value>
+    </Item>
+    <Item Key="PackageParamsKey">
+      <Value ctype="PackageParams">
+        <LuaIsEncrypt Value="False" />
+        <LuaEncryptKey Value="" />
+        <LuaEncryptSign Value="" />
+        <Android_PackageName Value="org.cocos.CocosProject" />
+        <AndroidkeyStore Value="" />
+        <AndroidVersion Value="" />
+        <iOS_Target Value="CocosProject iOS" />
+        <iOS_BundleID Value="" />
+        <Platform Value="None" />
+        <RunPlatform Value="None" />
+        <FrameworkVersion Value="" />
+        <IsDebugKeystore Value="True" />
+        <EnableSourceMap Value="False" />
+        <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="YouGet.csd" />
+          <FilePathData Path="gemreward.csd" />
+          <FilePathData Path="gemupgrade.csd" />
+          <FilePathData Path="DailyActivity.csd" />
+          <FilePathData Path="DailyActivitystate.csd" />
+          <FilePathData Path="gaikuang.csd" />
+          <FilePathData Path="EquipPopup.csd" />
+          <FilePathData Path="formationLayer.csd" />
+          <FilePathData Path="LoginGameCenter.csd" />
+          <FilePathData Path="shop.csd" />
+          <FilePathData Path="Money.csd" />
+          <FilePathData Path="toptitle.csd" />
+          <FilePathData Path="power.csd" />
+          <FilePathData Path="fight1.csd" />
+          <FilePathData Path="GamePassLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="GamePassLayer.csd" />
+      </Value>
+    </Item>
+  </Properties>
+</UserData>

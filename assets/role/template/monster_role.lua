@@ -1,0 +1,5 @@
+local MONSTERROLE=
+{
+$MONSTERROLE$
+};
+return MONSTERROLE;

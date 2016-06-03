@@ -1,0 +1,43 @@
+<Solution>
+  <PropertyGroup Name="CocosProject" Version="2.3.3.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="map_2.csd" Type="Layer" />
+        <Folder Name="csb">
+          <Folder Name="world">
+            <Folder Name="pic">
+              <TmxFile Name="2.tmx" />
+              <TmxFile Name="3.tmx" />
+              <TmxFile Name="4.tmx" />
+              <TmxFile Name="test3.tmx" />
+              <TmxFile Name="ditu1.tmx" />
+              <TmxFile Name="ditu2.tmx" />
+              <TmxFile Name="ditu3.tmx" />
+              <TmxFile Name="ditu4.tmx" />
+              <TmxFile Name="ditu5.tmx" />
+              <TmxFile Name="ditu6.tmx" />
+              <TmxFile Name="ditu7.tmx" />
+              <TmxFile Name="ditu8.tmx" />
+              <TmxFile Name="ditu9.tmx" />
+              <TmxFile Name="bg_green_01.tmx" />
+              <TmxFile Name="bg_green_02.tmx" />
+              <TmxFile Name="bg_green_03.tmx" />
+            </Folder>
+          </Folder>
+        </Folder>
+        <Project Name="map_1.csd" Type="Layer" />
+        <Project Name="Layer.csd" Type="Layer" />
+        <Project Name="map_3.csd" Type="Layer" />
+        <Project Name="map_4.csd" Type="Layer" />
+        <Project Name="map_5.csd" Type="Layer" />
+        <Project Name="map_6.csd" Type="Layer" />
+        <Project Name="map_7.csd" Type="Layer" />
+        <Project Name="map_8.csd" Type="Layer" />
+        <Project Name="map_9.csd" Type="Layer" />
+        <Project Name="map_10.csd" Type="Layer" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

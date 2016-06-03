@@ -1,0 +1,8 @@
+awarditem xxx xxx     例子：添加item为20001的道具 awarditem 20001 100
+awardrole xxx xxx     例子：添加role为1001的角色 awardrole 1001
+awardequip xxx xxx    例子：添加equip为10100的装备 awardequip 10100 10
+addgold xxx
+addingot xxx
+setvip  小于等于15 例子：setvip 15 设置vip等级为15
+addexp 19 增加经验值19点
+addexp 19 role 增加阵容上的人物经验值19
