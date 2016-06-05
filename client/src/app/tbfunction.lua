@@ -653,3 +653,28 @@ function G_Reload(filename)
 	end
 	return require(filename);
 end
+
+
+function G_TWO_ROLE_POINT(b_role,e_role) 
+    local des_x =  e_role.x - b_role.x;
+    local des_y =  e_role.y - b_role.y;
+
+    if des_x == 0 and des_y>0 then 
+        return Role_DIR_Point.NONE_TOP;
+    elseif des_x == 0 and des_y<0 then
+        return Role_DIR_Point.NONE_BUTTOM;
+    elseif des_x > 0 and des_y==0 then
+        return Role_DIR_Point.RIGHT_NONE;
+    elseif des_x < 0 and des_y==0 then
+        return Role_DIR_Point.LEFT_NONE;
+    elseif des_x >0 and des_y>0 then --1
+        return Role_DIR_Point.RIGHT_TOP;
+    elseif des_x<0 and des_y>0 then --2
+        return Role_DIR_Point.LEFT_TOP;
+    elseif des_x >0 and des_y<0 then --4
+        return Role_DIR_Point.RIGHT_BUTTOM;
+    elseif des_x<0 and des_y<0 then --3
+        return Role_DIR_Point.LEFT_BUTTOM;
+    end
+
+end

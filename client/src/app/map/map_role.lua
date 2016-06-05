@@ -7,16 +7,18 @@ require("app.data.skill")
 CMapRole = class("CMapRole", CMapNode)
 local SHOW_DEBUG = true;
 
-function CMapRole:ctor(id, role,scale)
+function CMapRole:ctor(id, role,scale,fight_layer)
     self.super:ctor();
     self.id = id;               -- 编号
     self.role = role;           -- 对应随从信息
     self.scale = scale or 1;
+    self.fight_layer = fight_layer;
     self.H_Stat = Hero_Action_Status.IDLE;
     self.can_attack = false;
     self.level = 1;
     self.timeline = 0;
-    
+    self.next_use_skill_time = 0;
+    self.cur_hp = 1;
     self:init();
     self:create_skill();
     --self:create_debug_info();
@@ -98,7 +100,7 @@ function CMapRole:play_ani(ani_id, param)
         self.render:getAnimation():play(unpack(info));
     end
 end
-function CMapRole:attack_emnegy(target_role)--优化直接发射子弹 发射一个技能
+function CMapRole:attack_emnegy(curtime,target_role)--优化直接发射子弹 发射一个技能
     if not stand then stand = false; end
 
     if self:get_Can_Attack() then 
@@ -119,7 +121,9 @@ function CMapRole:attack_emnegy(target_role)--优化直接发射子弹 发射一
         sg_action.delay_call(self.maprole, time/1000, cb);
     else
         local result = skill:use(self.timeline, self,target_role);
-        
+        self:set_Can_Attack(false);
+        self:set_next_skill_time(curtime);
+        --curtime
     end
     skill:play_use_sound(self);
     skill:play_use_effect(self);
@@ -135,6 +139,17 @@ function CMapRole:attack_emnegy(target_role)--优化直接发射子弹 发射一
     end
     --self:set_Can_Attack(false);
     --self:attack();
+end
+function CMapRole:set_next_skill_time(current_time)
+    self.next_use_skill_time = current_time + self.role.attack_cd * 1000;
+end
+function CMapRole:check_can_use(current_time)
+    if current_time > self.next_use_skill_time  then 
+        return true;
+    end
+    return false;
+    --self.attack_cd
+    --self.skill_cd_time
 end
 function CMapRole:update(interval)
     self.timeline = self.timeline + i;
@@ -182,5 +197,11 @@ function CMapRole:setDir(dir)
         self.render:setScaleX(1 * self:get_conf_scale());
     end
     self.face_dir = dir;
+end
+function CMapRole:is_dead()
+    return self.cur_hp <= 0;
+end
+function CMapRole:get_Pos()
+    return self.fight_layer:convertToNodeSpace(cc.p(self:getPositionX(),self:getPositionY()));
 end
 --endregion

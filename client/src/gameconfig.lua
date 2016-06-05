@@ -121,4 +121,16 @@ Role_Begin_Pos = {x  = display.cx, y  = display.cy};
 Role_Move_Speed = 5;
 
 Dead_line = 10;
+
+Role_DIR_Point = 
+{
+    RIGHT_NONE = {1,0},
+    RIGHT_TOP = {1,1},
+    NONE_TOP = {0,1},
+    LEFT_TOP = {-1,1},
+    LEFT_NONE = {-1,0},
+    LEFT_BUTTOM = {-1,-1},
+    NONE_BUTTOM = {0,-1},
+    RIGHT_BUTTOM =  {1,-1}
+}
 --endregion

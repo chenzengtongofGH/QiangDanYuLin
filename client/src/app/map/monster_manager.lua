@@ -4,6 +4,7 @@
 --此文件由[BabeLua]插件自动生成
 local monster_manager = class("monster_manager")
 function monster_manager:ctor(root_layer)
+    self.Index_Id = 1000;
     self.monster_list = {};
     self.root_layer = root_layer;
     self.root_width = root_layer:getContentSize().width;
@@ -12,7 +13,8 @@ function monster_manager:ctor(root_layer)
 end
 function monster_manager:add_monster()
     local monster_db = Croledb_interface.new(10001);
-    local monster_role = CMapRole.new(2,monster_db,0.3);
+    self.Index_Id = self.Index_Id  + 1;
+    local monster_role = CMapRole.new(self.Index_Id,monster_db,0.3,self.root_layer);
     monster_role:set_camp(CAMP_TYPE.HORDE);
     monster_role:setPosition(math.random(0,1136*2),math.random(0,640*2));
     self.root_layer:addChild(monster_role);
@@ -22,7 +24,7 @@ end
 function monster_manager:del_monster()
     
 end
-function monster_manager:process(map_role,role_x,role_y)
+function monster_manager:process(curtime,map_role,role_x,role_y)
     
     local attack_space = 80;--map_role:get_role_info().attack_range;
     for k,v in pairs(self.monster_list) do --判断圈的范围
@@ -31,7 +33,7 @@ function monster_manager:process(map_role,role_x,role_y)
         local rect_1 = cc.rect(role_x-attack_space,role_y-attack_space,attack_space*2,attack_space*2);
         if cc.rectContainsPoint(rect_1,cc.p(monster_role_x,monster_role_y)) then 
             if map_role:get_Can_Attack() then--发射一个子弹 
-                map_role:attack_emnegy(v);
+                map_role:attack_emnegy(curtime,v);
             end
             --print("attack");
         end

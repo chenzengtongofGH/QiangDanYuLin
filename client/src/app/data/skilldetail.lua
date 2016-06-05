@@ -124,7 +124,8 @@ function CSDRoleToDir:create_fightmove_item(param, random_y, pierce)
         --};
         --target:be_attack(2, info);
     end
-    CFightMoveItem.new(caster, self.speed, {self.eff_file, self.eff_name}, cb, random_y, pierce, nil, self.hit_num, FIGHT_TARGET_TYPE.ENEMY, nil, self.catcapult); 
+    --(r, speed, effinfo, hitcb,  hitnum, target_type, whitelist) 
+    CFightMoveItem.new(caster, self.speed, {self.eff_file, self.eff_name}, cb,  self.hit_num, FIGHT_TARGET_TYPE.ENEMY,nil,hit_role); 
 end
 
 function CSDRoleToDir:update(param, time)

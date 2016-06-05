@@ -14,7 +14,6 @@ local envent_id_list =
     "EVENT_ADD_FIGHTITEM_TO_LIST",
     "EVENT_REMOVE_FIGHTITEM",
     "EVENT_ADD_FIGHTITEMOBJ_TO_MAP",
-    "EVENT_REMOVE_FIGHTITEM"
 }
 
 function qdylGameLayer:ctor()
@@ -151,17 +150,22 @@ function qdylGameLayer:update()
 end
 function qdylGameLayer:process_Ai(cur_frame_interval)
     local curtime = g_gettime();
+
+    if self.map_hero:check_can_use(curtime) then 
+        self.map_hero:set_Can_Attack(true);
+    end
+
     if self.last_update_time == nil then
         self.last_update_time = curtime;
     end
     --print("self.last_update_time:"..(curtime - self.last_update_time) / 1000);
-    if (curtime - self.last_update_time) / 1000 > self.map_hero:get_role_info().attack_cd  then --and (not self.map_hero:get_Can_Attack())
+    --if (curtime - self.last_update_time) / 1000 > self.map_hero:get_role_info().attack_cd  then --and (not self.map_hero:get_Can_Attack())
         
-        self.map_hero:set_Can_Attack(true);
-        self.last_update_time = curtime;
-    end
+    --    self.map_hero:set_Can_Attack(true);
+    --    self.last_update_time = curtime;
+    --end
     --英雄打怪兽
-    self.monster_manager_list:process(self.map_hero,self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y);--self.Role_Pos_Conver_Space
+    self.monster_manager_list:process(curtime,self.map_hero,self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y);--self.Role_Pos_Conver_Space
     --self.monster_manager_list
     --for k,v in pairs(t) do 
         
@@ -206,7 +210,7 @@ function qdylGameLayer:init()
     self.Role_obj_Layer = display.newLayer();
     self.rootLayer:addChild(self.Role_obj_Layer);
     self.role = Croledb_interface.new(1000);
-    self.map_hero = CMapRole.new(1,self.role);
+    self.map_hero = CMapRole.new(1,self.role,nil,self.UILayer);
     self.map_hero:set_camp(CAMP_TYPE.ALLIANCE);
 	self.Role_obj_Layer:addChild( self.map_hero );
     self.map_hero:setPosition(display.cx,display.cy);
@@ -294,7 +298,7 @@ function qdylGameLayer:add_move_item(item,z)
     z = z or MAP_Z.MOVE_ITEM;
     self.UILayer:addChild(item, z);
 end
-function qdylGameLayer:remove_fightitem(item,z)
+function qdylGameLayer:remove_fightitem(t, id)
     for k,v in pairs(self.fight_items) do
         if v.id == id and v.item_type == t then
             v:release();
