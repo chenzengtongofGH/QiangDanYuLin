@@ -133,4 +133,6 @@ Role_DIR_Point =
     NONE_BUTTOM = {0,-1},
     RIGHT_BUTTOM =  {1,-1}
 }
+Game_Max_Width = 1136 * 2;
+Game_Max_Heihgt = 640 *2 ;
 --endregion

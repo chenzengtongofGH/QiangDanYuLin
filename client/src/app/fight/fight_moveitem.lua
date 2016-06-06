@@ -69,11 +69,10 @@ function CFightMoveItem:update(frame_interval)
         end
     end
     if targer_role_pos_X then 
-        print("ItemX:"..self.position.x..",Y:"..self.position.y..",target_RoleX:"..targer_role_pos_X..",Y:"..targer_role_pos_Y )
-        local Point_dir = G_TWO_ROLE_POINT({x =  self.position.x, y  =self.position.y },{x = targer_role_pos_X,y = targer_role_pos_Y});
-        self.cur_distance = self.cur_distance + math.abs(dx);
-        self.position.x = self.position.x + dx*Point_dir[1];
-        self.position.y = self.position.y + dy*Point_dir[2];
+        --print("ItemX:"..self.position.x..",Y:"..self.position.y..",target_RoleX:"..targer_role_pos_X..",Y:"..targer_role_pos_Y )
+        local Point_dir_PointX,Point_dir_PointY = G_TWO_ROLE_Next_POINT({x =  self.position.x, y  =self.position.y },{x = targer_role_pos_X,y = targer_role_pos_Y},self.move_speed / 100);
+        self.position.x = Point_dir_PointX;
+        self.position.y = Point_dir_PointY;
         self:check_explosion();
         if G_isUserDataValid(self.map_obj) then
             self.map_obj:setPosition(self.position);

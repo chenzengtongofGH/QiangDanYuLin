@@ -14,6 +14,7 @@ local envent_id_list =
     "EVENT_ADD_FIGHTITEM_TO_LIST",
     "EVENT_REMOVE_FIGHTITEM",
     "EVENT_ADD_FIGHTITEMOBJ_TO_MAP",
+    "Remove_Role_In_Map",
 }
 
 function qdylGameLayer:ctor()
@@ -310,6 +311,11 @@ function qdylGameLayer:remove_fightitem(t, id)
         end
     end
 end
+function qdylGameLayer:remove_role_in_map(roleId)
+    if roleId then 
+        self.monster_manager_list:del_monster(roleId);    
+    end
+end
 function qdylGameLayer:OnEvent(event, ...)
     local args = { ...}
     if event == "EVENT_ADD_FIGHTITEM_TO_LIST" then
@@ -318,6 +324,8 @@ function qdylGameLayer:OnEvent(event, ...)
         self:add_move_item(args[1], args[2]);
     elseif event == "EVENT_REMOVE_FIGHTITEM" then   
         self:remove_fightitem(args[1], args[2]); 
+    elseif event == "Remove_Role_In_Map" then 
+        self:remove_role_in_map(args[1],args[2]);
     end 
 end
 

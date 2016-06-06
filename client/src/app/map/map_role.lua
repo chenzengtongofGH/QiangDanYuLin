@@ -140,6 +140,10 @@ function CMapRole:attack_emnegy(curtime,target_role)--优化直接发射子弹 �
     --self:set_Can_Attack(false);
     --self:attack();
 end
+--显示一些受击特效
+function CMapRole:be_attack()
+    EventSystem:pushEvent("Remove_Role_In_Map",self.id);
+end
 function CMapRole:set_next_skill_time(current_time)
     self.next_use_skill_time = current_time + self.role.attack_cd * 1000;
 end

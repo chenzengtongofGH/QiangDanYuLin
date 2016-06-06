@@ -678,3 +678,51 @@ function G_TWO_ROLE_POINT(b_role,e_role)
     end
 
 end
+function G_TWO_ROLE_Next_POINT(b_role,e_role,speed)
+        local monster_speed = speed;
+        local des_x =  e_role.x - b_role.x;
+        local des_y =  e_role.y - b_role.y;
+
+        local three_line = math.sqrt(des_x*des_x + des_y*des_y);
+        local x_rad =  des_y / three_line;
+        local y_rad = des_x / three_line;
+        local speedx = 0;
+        local speedy = 0;
+
+        local need_line = 6;
+
+        if des_x >0 and des_y>0 then --1
+            speedx = monster_speed * math.cos(x_rad);
+            speedy = monster_speed * math.sin(x_rad);
+        elseif des_x<0 and des_y>0 then --2
+            speedx = -monster_speed * math.cos(x_rad);
+            speedy = monster_speed * math.sin(x_rad);
+        elseif des_x >0 and des_y<0 then --4
+            speedx = monster_speed * math.cos(y_rad);
+            speedy = -monster_speed * math.sin(y_rad);
+        elseif des_x<0 and des_y<0 then --3
+            speedx = -monster_speed * math.cos(y_rad);
+            speedy = monster_speed * math.sin(y_rad);
+        end
+
+        if math.abs(des_x) <= need_line and des_y ~= 0 then 
+            if des_y >0 then --人要向上
+                speedy = monster_speed;--地图向下
+            else
+                speedy = -monster_speed;
+            end
+            speedx = 0;
+        end
+
+        if des_x~=0 and math.abs(des_y)<= need_line then 
+            if des_x >0 then --人要向右
+                speedx = monster_speed;--地图向左
+            else
+                speedx = -monster_speed;
+            end
+            speedy = 0;
+        end
+
+        return b_role.x + speedx,b_role.y + speedy
+
+end

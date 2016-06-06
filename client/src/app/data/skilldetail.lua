@@ -94,6 +94,7 @@ function CSDRoleToDir:create_fightmove_item(param, random_y, pierce)
     local skill_damage = self:get_really_value(level);
     local function cb(target)--击中目标后的回调
         
+        print("create_fightmove_item cb");
         --local script_type = nil;
         --local scirpt_id = nil;
         --if #self.hit_script > 0 then
@@ -122,7 +123,8 @@ function CSDRoleToDir:create_fightmove_item(param, random_y, pierce)
         --    ["beatksound"] = sound,
         --    ["role_eff"] = self.beatk_role_eff,
         --};
-        --target:be_attack(2, info);
+        local info = {};
+        target:be_attack(2, info);
     end
     --(r, speed, effinfo, hitcb,  hitnum, target_type, whitelist) 
     CFightMoveItem.new(caster, self.speed, {self.eff_file, self.eff_name}, cb,  self.hit_num, FIGHT_TARGET_TYPE.ENEMY,nil,hit_role); 

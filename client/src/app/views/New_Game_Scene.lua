@@ -9,6 +9,7 @@ local GameLayer = require "app.gamelayer.qdylGameLayer"
 function New_Game_Scene:onCreate()
     print("on_create"); 
    self.gamelayer = GameLayer.new();
+   g_game_layer = self.gamelayer;
    self:addChild(self.gamelayer);
    
 end
