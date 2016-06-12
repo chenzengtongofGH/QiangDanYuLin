@@ -16,7 +16,8 @@ View_Ozder =
 {
     Map  = 2,
     Role = 3,
-    UI_Z = 100,
+    UI_Z = 4,
+    Top_UI_Z = 5,
 }
 
 Jump_distance = 220;
@@ -135,4 +136,7 @@ Role_DIR_Point =
 }
 Game_Max_Width = 1136 * 2;
 Game_Max_Heihgt = 640 *2 ;
+
+
+Hero_Id = 1;
 --endregion

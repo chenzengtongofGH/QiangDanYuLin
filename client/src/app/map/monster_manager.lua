@@ -16,6 +16,7 @@ function monster_manager:add_monster()
     self.Index_Id = self.Index_Id  + 1;
     local monster_role = CMapRole.new(self.Index_Id,monster_db,0.3,self.root_layer);
     monster_role:set_camp(CAMP_TYPE.HORDE);
+    monster_role:set_hp(1);
     local current_role= g_game_layer.map_hero:get_Pos();
     local rand_Min_width,rand_Max_width = current_role.x - display.cx,current_role.x + display.cx;
     local rand_Min_height,rand_Max_height = current_role.y - display.cy,current_role.y + display.cy;
@@ -33,12 +34,6 @@ function monster_manager:add_monster()
     else
         birth_y = math.random(rand_Max_height, Game_Max_Heihgt);    
     end
-    --if birth_x == 0 and birth_y == 0 then 
-    --    birth_x =  - 200;
-    --    birth_y = -200;
-    --elseif 
-    
-    --end
      
     --这里需要移除创建人物在当前的显示界面  
     monster_role:setPosition(birth_x,birth_y);
@@ -46,7 +41,7 @@ function monster_manager:add_monster()
     table.insert(self.monster_list,monster_role);
     monster_role:Run();
 end
-function monster_manager:del_monster(roleId)
+function monster_manager:del_monster(roleId,bool_crash)
     for k,v in pairs(self.monster_list) do 
         if G_isUserDataValid(v) and v.id == roleId then 
             v:Dead_Role();
@@ -56,31 +51,45 @@ function monster_manager:del_monster(roleId)
 end
 function monster_manager:process(curtime,map_role,role_x,role_y)
     
-    local attack_space = 80;--map_role:get_role_info().attack_range;
+    local attack_space = map_role:get_role_info().attack_range;--map_role:get_role_info().attack_range; attack_range;
+
     for k,v in pairs(self.monster_list) do --判断圈的范围
-        local monster_role_x = v:getPositionX();
-        local monster_role_y = v:getPositionY();
-        local rect_1 = cc.rect(role_x-attack_space,role_y-attack_space,attack_space*2,attack_space*2);
-        if cc.rectContainsPoint(rect_1,cc.p(monster_role_x,monster_role_y)) then 
+        local des_x = v:getPositionX() - role_x;
+        local des_y = v:getPositionY() - role_y;
+        local three_line = math.sqrt(des_x*des_x + des_y*des_y);
+        if three_line < attack_space then 
             if map_role:get_Can_Attack() then--发射一个子弹 
                 map_role:attack_emnegy(curtime,v);
             end
-            --print("attack");
         end
+
+
         local dead_rect2 = cc.rect(role_x - Dead_line ,role_y-Dead_line,Dead_line*2,Dead_line*2);
-        if cc.rectContainsPoint(dead_rect2,cc.p(monster_role_x,monster_role_y)) then --进入自爆阶段 
+        if cc.rectContainsPoint(dead_rect2,cc.p(v:getPositionX(),v:getPositionY())) then --进入自爆阶段 
             --怪物直接炸死主角,主角口血，怪物死亡
-            self:del_monster(v.id);
+            self:del_monster(v.id,true);
+            local info = {
+            ["des_hp"] = 1,
+            };
+            map_role:be_attack(info);
             break;
-            --v:Dead_Role();
-            --table.remove(self.monster_list, k);
-            --print("dead_dead");
+       
         end
-        --if rect_1:containsPoint(cc.p(monster_role_x,monster_role_y)) then 
-        --    print("attack");
-        --end
-        --if role_x 
+        --加入怪物攻击人类
+        --怪物打人
+        if v:check_can_use(curtime) then 
+            v:set_Can_Attack(true);
+        end
+
+        local emeny_space = v:get_role_info().attack_range;
+        if three_line < emeny_space then 
+            if v:get_Can_Attack() then--发射一个子弹 
+                v:attack_emnegy(curtime,map_role);
+            end
+        end
     end
+
+
 end
 function monster_manager:update_monster(rolex,roley)
      if #self.monster_list < 10 then --在地图上随机产生
@@ -116,7 +125,7 @@ function monster_manager:update_monster(rolex,roley)
         end
         
         local need_line = 6;
-        if des_x >=0 then 
+        if des_x <=0 then 
             v:setDir(FACE_DIR.RIGHT);
         else
             v:setDir(FACE_DIR.LEFT); 
@@ -142,10 +151,7 @@ function monster_manager:update_monster(rolex,roley)
         if math.abs(v:getPositionX()  - currentRole_pos_X) >= 10 or  math.abs(v:getPositionY()  - currentRole_pos_Y) >= 10  then 
             v:setPosition(v:getPositionX() + speedx,v:getPositionY() + speedy)
         end  
-
-        --local ui_layer_posX = self.UILayer:getPositionX();
-        --local ui_layer_posY = self.UILayer:getPositionY();
-        --self.UILayer:setPosition(ui_layer_posX+speedx,ui_layer_posY+speedy);
+        
 
     end
 end

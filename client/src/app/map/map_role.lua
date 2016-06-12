@@ -140,9 +140,30 @@ function CMapRole:attack_emnegy(curtime,target_role)--优化直接发射子弹 �
     --self:set_Can_Attack(false);
     --self:attack();
 end
+function CMapRole:get_hp()
+    return self.cur_hp;
+end
+function CMapRole:set_hp(hp)
+    self.cur_hp = hp;
+end
 --显示一些受击特效
-function CMapRole:be_attack()
-    EventSystem:pushEvent("Remove_Role_In_Map",self.id);
+function CMapRole:be_attack(info)
+    local des_hp = info.des_hp or 0;
+    self.cur_hp = self:get_hp()  - des_hp;
+    if self.id < 500 then  
+        EventSystem:pushEvent("Update_Current_Hp",self:get_hp());
+        self:play_font_action(des_hp);
+    end
+    if self.cur_hp<=0 then 
+        EventSystem:pushEvent("Remove_Role_In_Map",self.id);
+    end
+end
+function CMapRole:play_font_action(damage_hp)
+    local hp_label = sg_ui.LabelTTF("-"..damage_hp,nil,48);
+    hp_label:setPosition(0,self.render:getContentSize().height/2)
+    self.render:addChild(hp_label,100);
+    hp_label:runAction(cc.Sequence:create(cc.MoveBy:create(3,cc.p(0,200)),cc.RemoveSelf:create() ) );
+    --local damage_font
 end
 function CMapRole:set_next_skill_time(current_time)
     self.next_use_skill_time = current_time + self.role.attack_cd * 1000;
@@ -201,6 +222,9 @@ function CMapRole:setDir(dir)
         self.render:setScaleX(1 * self:get_conf_scale());
     end
     self.face_dir = dir;
+end
+function CMapRole:getDir()
+    return self.face_dir;
 end
 function CMapRole:is_dead()
     return self.cur_hp <= 0;

@@ -1,7 +1,7 @@
 local SkillDetailDB=
 {
 	[1]={
-	            [1]={"res#json#skill#1000#new_huoqiu","1000_1","eff_mf_fire_shouji",1,"res#audio#skill#1000_hit",0, 500, 1, 1, 2, 0, 11, 1.00,{}},
+	            [1]={"res#json#skill#1000#new_huoqiu","1000_1","eff_mf_fire_shouji",1,"res#audio#skill#1000_hit",0, 1000, 1, 1, 2, 0, 11, 1.00,{}},
             [2]={"res#json#skill#1002#eff_ice","eff_jichu_ice","eff_mf_ice_shouji",0,"res#audio#skill#1002_hit",0, 500, 1, 1, 2, 0, 7, 1.00,{4,24}}
 	},
 	[2]={

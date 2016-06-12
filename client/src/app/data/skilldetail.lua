@@ -123,8 +123,10 @@ function CSDRoleToDir:create_fightmove_item(param, random_y, pierce)
         --    ["beatksound"] = sound,
         --    ["role_eff"] = self.beatk_role_eff,
         --};
-        local info = {};
-        target:be_attack(2, info);
+        
+        local info = {["des_hp"] = 1,};
+        target:be_attack(info);
+        
     end
     --(r, speed, effinfo, hitcb,  hitnum, target_type, whitelist) 
     CFightMoveItem.new(caster, self.speed, {self.eff_file, self.eff_name}, cb,  self.hit_num, FIGHT_TARGET_TYPE.ENEMY,nil,hit_role); 

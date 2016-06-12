@@ -22,7 +22,12 @@ function CFightMoveItem:ctor(r, speed, effinfo, hitcb,  hitnum, target_type, whi
         y_offset = y_offset - 20;
     end
 
-    local x,y = r:get_Pos();
+    self.bool_dir = 1;
+    if self.role:getDir() == FACE_DIR.LEFT then 
+        self.bool_dir = -1;
+    end
+
+    local x,y = self:get_target_role_pos(r);-- r:get_Pos().x, r:get_Pos().y;
     self.position = cc.p(x, y);    
     self.move_speed = speed;
     self.y_speed = speed;
@@ -35,6 +40,7 @@ function CFightMoveItem:ctor(r, speed, effinfo, hitcb,  hitnum, target_type, whi
     if self.move_speed < 0 then
         self.map_obj:setScaleX(-1);
     end
+    --self.map_obj:setScaleX(1);
     self.target_type = target_type or FIGHT_TARGET_TYPE.ENEMY;
     
     self.hit_callback = hitcb;
@@ -48,6 +54,19 @@ function CFightMoveItem:ctor(r, speed, effinfo, hitcb,  hitnum, target_type, whi
 
     self.camp = self.role:get_camp();
     self.tager_role = target_role or {};
+    
+
+    self.bool_hero = false;
+    --求出对应的角度
+    self.role_rad = -1;
+    for k,v in pairs(self.tager_role) do 
+        if v.id == Hero_Id then 
+            self.bool_hero = true;
+            local current_role_x,current_role_y = self:get_target_role_pos(v);
+            self.role_rad  = G_RAD_TWO_POINT({x =  self.position.x, y  =self.position.y },{x = current_role_x,y = current_role_y})
+        end
+    end
+
 
     self.white_list = whitelist or {};
     EventSystem:pushEvent("EVENT_ADD_FIGHTITEM_TO_LIST", self);
@@ -63,27 +82,49 @@ function CFightMoveItem:update(frame_interval)
     local dy = self.y_speed * frame_interval / 1000;
     --获取目标的角色的位置
     local targer_role_pos_X,targer_role_pos_Y ;
+    local targer_role_Point ;
     for k,v in pairs(self.tager_role) do 
         if G_isUserDataValid(v) then 
-            targer_role_pos_X,targer_role_pos_Y = v:getPosition();
+            --targer_role_Point = v:get_Pos();
+            targer_role_pos_X,targer_role_pos_Y = self:get_target_role_pos(v);--v:getPosition();
+            
         end
     end
-    if targer_role_pos_X then 
+    local move_speed = self.move_speed / 100;
+    
+    if targer_role_pos_X then --目标已经挂了
         --print("ItemX:"..self.position.x..",Y:"..self.position.y..",target_RoleX:"..targer_role_pos_X..",Y:"..targer_role_pos_Y )
-        local Point_dir_PointX,Point_dir_PointY = G_TWO_ROLE_Next_POINT({x =  self.position.x, y  =self.position.y },{x = targer_role_pos_X,y = targer_role_pos_Y},self.move_speed / 100);
-        self.position.x = Point_dir_PointX;
-        self.position.y = Point_dir_PointY;
+        local rad_two = G_RAD_TWO_POINT({x =  self.position.x, y  =self.position.y },{x = targer_role_pos_X,y = targer_role_pos_Y});        
+        local next_x = move_speed * math.cos(rad_two) * self.bool_dir;
+        local next_y = move_speed * math.sin(rad_two) * self.bool_dir;
+        
+        if self.bool_hero then 
+            next_x = move_speed * math.cos(self.role_rad) * self.bool_dir ;
+            next_y = move_speed * math.sin(self.role_rad) * self.bool_dir;
+        end
+
+        self.position.x = next_x + self.position.x;
+        self.position.y = next_y + self.position.y;
         self:check_explosion();
         if G_isUserDataValid(self.map_obj) then
             self.map_obj:setPosition(self.position);
         end
+    else
+        EventSystem:pushEvent("EVENT_REMOVE_FIGHTITEM", self.item_type, self.id);
     end
     
     --if self.cur_distance > self.max_distance then
     --  --  EventSystem:pushEvent("EVENT_REMOVE_FIGHTITEM", self.item_type, self.id);
     --end
 end
-
+function CFightMoveItem:get_target_role_pos(v)
+    local targer_role_pos_X,targer_role_pos_Y = 0,0;
+    targer_role_pos_X,targer_role_pos_Y = v:getPosition();
+    if v.id == Hero_Id then 
+        targer_role_pos_X,targer_role_pos_Y = v:get_Pos().x,v:get_Pos().y;
+    end
+    return targer_role_pos_X,targer_role_pos_Y;
+end
 function CFightMoveItem:is_in_white_list(id)
     for k,v in pairs(self.white_list) do
         if v == id then
@@ -146,11 +187,13 @@ end
 
 function CFightMoveItem:check_explosion()
     local target_list = self.tager_role;
-   -- local target_list = self:get_target_roles(self.target_type, self.camp, true);
+
     for k, v in pairs(target_list) do
         local in_white_list = self:is_in_white_list(v.id);
         if v:is_dead() == false and in_white_list == false then
-            if math.abs(v:getPositionX() - self.position.x) < 25 and math.abs(v:getPositionY() - self.position.y) < 25 then
+            --local current_Point = v:get_Pos();
+            local current_x ,current_y = self:get_target_role_pos(v);
+            if math.abs(current_x - self.position.x) < 25 and math.abs(current_y - self.position.y) < 25 then
                 -- 只要碰撞就进入白名单，保证一个目标只影响一次
                 table.insert(self.white_list, v.id);
                 local hit = true;
@@ -168,6 +211,11 @@ function CFightMoveItem:check_explosion()
                 break;
                 
             end
+
+            if current_x < 0 or current_x > Game_Max_Width or current_y<0 or current_y > Game_Max_Heihgt then 
+                EventSystem:pushEvent("EVENT_REMOVE_FIGHTITEM", self.item_type, self.id);
+            end
+
         end
     end
 end

@@ -6,6 +6,7 @@ local qdylGameLayer = class("qdylGameLayer", cc.load("mvc").ViewBase)
 local gScheduler = require("skygame.scheduler")
 local monster_manager = require("app.map.monster_manager")
 local RUN_CONF = require("app.map.runframeconf");
+local Map_UI_Layer = require("app.gamelayer.game_map_ui_layer")
 require("app.map.map_role")
 require("app.fight.fight_itembase");
 require("app.fight.fight_moveitem");
@@ -15,6 +16,7 @@ local envent_id_list =
     "EVENT_REMOVE_FIGHTITEM",
     "EVENT_ADD_FIGHTITEMOBJ_TO_MAP",
     "Remove_Role_In_Map",
+    "Update_Current_Hp",
 }
 
 function qdylGameLayer:ctor()
@@ -28,7 +30,9 @@ function qdylGameLayer:ctor()
     self.all_maprole_AI = {};
     self.fight_items = {};
     self:init();
+    
     self.monster_manager_list = monster_manager.new(self.UILayer);
+   
 end
 function qdylGameLayer:realse()
     self:removeEvent();
@@ -161,7 +165,6 @@ function qdylGameLayer:process_Ai(cur_frame_interval)
     end
     --print("self.last_update_time:"..(curtime - self.last_update_time) / 1000);
     --if (curtime - self.last_update_time) / 1000 > self.map_hero:get_role_info().attack_cd  then --and (not self.map_hero:get_Can_Attack())
-        
     --    self.map_hero:set_Can_Attack(true);
     --    self.last_update_time = curtime;
     --end
@@ -215,7 +218,7 @@ function qdylGameLayer:init()
     self.map_hero:set_camp(CAMP_TYPE.ALLIANCE);
 	self.Role_obj_Layer:addChild( self.map_hero );
     self.map_hero:setPosition(display.cx,display.cy);
-
+    self.map_hero:set_hp(100);
     self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
     
     --   self.map_hero:convertToNodeSpace(cc.p(self.UILayer:getPositionX(),self.UILayer:getPositionY()));
@@ -231,64 +234,17 @@ function qdylGameLayer:init()
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self.UILayer) 
 
     self.updatetimer = gScheduler.scheduleGlobal(function() if G_isUserDataValid(self) then self:update() end end, 0)
+
+
+    self.Map_Ui_Layer = Map_UI_Layer.new();
+    self:addChild(self.Map_Ui_Layer,View_Ozder.Top_UI_Z);
+
 end
-function qdylGameLayer:depeard()
-     if self.begin_pos.x ~= self.Move_pos.x or self.begin_pos.y ~= self.Move_pos.y then --我不动，底图在动
-            local des_x =  self.Move_pos.x - self.begin_pos.x;
-            local des_y = self.Move_pos.y - self.begin_pos.y;
-            local three_line = math.sqrt(des_x*des_x + des_y*des_y);
-            local x_rad =  des_y / three_line;
-            local speedx = Role_Move_Speed * math.cos(x_rad);
-            local speedy = Role_Move_Speed * math.sin(x_rad);
-            local current_pos = self.begin_pos;
-            --	math.pi
-            -- current_pos.x = current_pos.x +  speedx ;
-            --current_pos.y = current_pos .y + speedy ;
-            if math.abs(current_pos.x - self.Move_pos.x) <= Role_Move_Speed then 
-                current_pos.x = self.Move_pos.x;
-            end   
-
-            if math.abs(current_pos.y - self.Move_pos.y) <= Role_Move_Speed then 
-                current_pos.y = self.Move_pos.y; 
-            end 
-            
-            
-            --if des_x == 0 and des_y>0 then
-            --    current_pos.y = current_pos .y + speedy ;
-            --elseif des_x == 0 and des_y<0 then  
-            --    current_pos.y = current_pos .y - speedy ;
-            --elseif des_y == 0 and des_x>0 then
-            --    current_pos.x = current_pos .x + speedx ;
-            --elseif des_y == 0 and des_x<0 then  
-            --    current_pos.x = current_pos .x - speedx ;
-            --elseif des_x >0 and des_y>0 then --右上角
-            --    current_pos.x = current_pos.x + speedx ;
-            --    current_pos.y = current_pos .y + speedy ;
-            --elseif des_x >0  and des_y <0 then --右下角
-            --    current_pos.x = current_pos.x + speedx ;
-            --    current_pos.y = current_pos .y - speedy ;
-            --elseif des_x <0 and des_y >0 then --左上角
-            --    current_pos.x = current_pos.x - speedx ;
-            --    current_pos.y = current_pos .y + speedy ;
-            --else --左下角 
-            --    current_pos.x = current_pos.x - speedx ;
-            --    current_pos.y = current_pos .y - speedy ;
-            --end
-
-              
-            self.begin_pos = current_pos;
-            self.map_hero:Run();
-           
-            --self.map_hero:setPosition(current_pos);
-            --local follow = cc.Follow:create(self.map_hero);
-            --self:runAction(follow);
-            --print("self.UILayer PosX:"..self.UILayer:getPositionX()); 
-
-            --print("self.map_hero PosX:"..self:getPositionX()..",cuurentPox:x"..self.map_hero:getPositionX()..",Y:"..self.map_hero:getPositionY()..",MoveToY:"..self.Move_pos.y);  
-        else   
-            self.map_hero:StopRun();
-        end
+function qdylGameLayer:update_current_role_hp(hp)
+    local role_hp = hp or  0;
+    self.Map_Ui_Layer:set_current_hp(role_hp);
 end
+
 function qdylGameLayer:add_fightitem(item)
     table.insert(self.fight_items, item);
 end
@@ -326,6 +282,8 @@ function qdylGameLayer:OnEvent(event, ...)
         self:remove_fightitem(args[1], args[2]); 
     elseif event == "Remove_Role_In_Map" then 
         self:remove_role_in_map(args[1],args[2]);
+    elseif event == "Update_Current_Hp" then 
+        self:update_current_role_hp(args[1]);
     end 
 end
 

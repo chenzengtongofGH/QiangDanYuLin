@@ -654,6 +654,47 @@ function G_Reload(filename)
 	return require(filename);
 end
 
+function G_RAD_TWO_POINT(b_role,e_role)
+    local des_x = e_role.x - b_role.x ;
+    local des_y = e_role.y - b_role.y ;
+    if des_x == 0 and des_y == 0 then 
+        return 0;
+    end
+
+    if des_x > 0 and des_y == 0 then
+        return 0;
+    end
+
+    if des_x < 0 and des_y == 0 then
+        return math.pi;
+    end
+
+    if des_x == 0 and des_y > 0 then 
+        return math.pi / 2;
+    end
+    if des_x == 0 and des_y < 0 then 
+        return math.pi / 2 * 3;
+    end
+
+    if des_x > 0 and des_y > 0 then 
+        return math.atan(des_y / des_x);
+    end
+
+    if des_x < 0 and des_y > 0 then 
+        return math.pi  - math.atan(des_y / -des_x);
+    end
+
+    if des_x < 0 and des_y < 0 then 
+        return math.pi + math.atan(-des_y / -des_x);
+    end
+
+    if des_x > 0 and des_y < 0 then 
+        return math.pi * 2 - math.atan(-des_y / des_x);
+    end
+
+
+    return 0;
+end
 
 function G_TWO_ROLE_POINT(b_role,e_role) 
     local des_x =  e_role.x - b_role.x;
