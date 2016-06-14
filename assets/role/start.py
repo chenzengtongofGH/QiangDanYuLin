@@ -25,8 +25,8 @@ def	roledb():
 	
 	client_configs = {
 		'role':{
-			'data_type':['int','unicode','str','int', 'int', 'int', 'int', 'float', 'int','int', 'int', 'unicode','unicode', 'str','float','float','int'],
-			'data_template':'[%(s0)d]={"%(s1)s","%(s2)s",%(s3)d,%(s4)d,%(s5)d,%(s6)d,%(s7).2f, %(s8)d,%(s9)d,%(s10)d,"%(s11)s","%(s12)s","%(s13)s",%(s14).2f,%(s15).2f,%(s16)d}',
+			'data_type':['int','unicode','str','int', 'int', 'int', 'int', 'float', 'int','int', 'int', 'unicode','unicode', 'str','float','float','int','str'],
+			'data_template':'[%(s0)d]={"%(s1)s","%(s2)s",%(s3)d,%(s4)d,%(s5)d,%(s6)d,%(s7).2f, %(s8)d,%(s9)d,%(s10)d,"%(s11)s","%(s12)s","%(s13)s",%(s14).2f,%(s15).2f,%(s16)d,{%(s17)s}}',
 			'placeholder':'$ROLEDB$'
 		}
 	}

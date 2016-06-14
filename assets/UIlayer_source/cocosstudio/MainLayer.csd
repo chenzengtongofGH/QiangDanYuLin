@@ -1,12 +1,12 @@
-<GameProjectFile>
-  <PropertyGroup Type="Layer" Name="MainLayer" ID="46cf9790-eda1-40f5-8af7-842172f337d2" Version="2.2.9.0" />
+<GameFile>
+  <PropertyGroup Name="MainLayer" Type="Layer" ID="46cf9790-eda1-40f5-8af7-842172f337d2" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Layer" Tag="3" ctype="GameLayerObjectData">
         <Size X="1136.0000" Y="640.0000" />
         <Children>
-          <AbstractNodeData Name="Panel_1" ActionTag="815232940" Tag="239" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ObjectIndex="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="Panel_1" ActionTag="815232940" Tag="239" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ObjectIndex="1" ctype="PanelObjectData">
             <Size X="1136.0000" Y="640.0000" />
             <Children>
               <AbstractNodeData Name="Image_5" ActionTag="-346741680" Tag="14" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" StretchWidthEnable="True" StretchHeightEnable="True" Scale9Width="1136" Scale9Height="640" ObjectIndex="5" ctype="ImageViewObjectData">
@@ -41,7 +41,7 @@
               <AbstractNodeData Name="Image_3" ActionTag="-1031958386" Tag="36" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="64.8751" RightMargin="486.1249" TopMargin="92.7497" BottomMargin="120.2503" StretchWidthEnable="True" StretchHeightEnable="True" Scale9Width="585" Scale9Height="427" ObjectIndex="3" ctype="ImageViewObjectData">
                 <Size X="585.0000" Y="427.0000" />
                 <Children>
-                  <AbstractNodeData Name="Button_xiayige" ActionTag="-1874461922" Tag="69" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="316.8789" RightMargin="12.1211" TopMargin="421.7810" BottomMargin="-46.7810" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="256" Scale9Height="52" ObjectIndex="20" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="Button_xiayige" ActionTag="-1874461922" Tag="69" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="316.8789" RightMargin="12.1211" TopMargin="421.7810" BottomMargin="-46.7810" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="256" Scale9Height="52" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ObjectIndex="20" ctype="ButtonObjectData">
                     <Size X="256.0000" Y="52.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="444.8925" Y="-20.7810" />
@@ -73,7 +73,7 @@
                 <PreSize X="0.1972" Y="0.0703" />
                 <FileData Type="Normal" Path="res/csb/ui/main/money.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Button_qian_zengjia" ActionTag="238484576" Tag="35" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="254.0000" RightMargin="834.0000" TopMargin="28.5000" BottomMargin="564.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="48" Scale9Height="47" ObjectIndex="13" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_qian_zengjia" ActionTag="238484576" Tag="35" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="254.0000" RightMargin="834.0000" TopMargin="28.5000" BottomMargin="564.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="48" Scale9Height="47" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ObjectIndex="13" ctype="ButtonObjectData">
                 <Size X="48.0000" Y="47.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="277.9792" Y="587.9680" />
@@ -96,7 +96,7 @@
                 <PreSize X="0.3002" Y="0.4203" />
                 <FileData Type="Normal" Path="res/csb/ui/main/role.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Button_shoudongwanwan" ActionTag="207963638" Tag="7" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="858.3760" RightMargin="119.6240" TopMargin="100.9999" BottomMargin="476.0001" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="158" Scale9Height="64" ObjectIndex="2" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_shoudongwanwan" ActionTag="207963638" Tag="7" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="858.3760" RightMargin="119.6240" TopMargin="100.9999" BottomMargin="476.0001" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="158" Scale9Height="64" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ObjectIndex="2" ctype="ButtonObjectData">
                 <Size X="158.0000" Y="63.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="937.4272" Y="507.5200" />
@@ -109,7 +109,7 @@
                 <PressedFileData Type="Normal" Path="res/csb/ui/main/yellow2.png" Plist="" />
                 <NormalFileData Type="Normal" Path="res/csb/ui/main/yellow1.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Button_chakanduiwu" ActionTag="2031440488" Tag="6" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="772.3127" RightMargin="167.6873" TopMargin="485.8712" BottomMargin="75.1288" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="196" Scale9Height="80" ObjectIndex="1" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_chakanduiwu" ActionTag="2031440488" Tag="6" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="772.3127" RightMargin="167.6873" TopMargin="485.8712" BottomMargin="75.1288" TouchEnable="True" FontSize="14" Scale9Enable="True" Scale9Width="196" Scale9Height="80" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ObjectIndex="1" ctype="ButtonObjectData">
                 <Size X="196.0000" Y="79.0000" />
                 <AnchorPoint ScaleX="0.5169" ScaleY="0.5047" />
                 <Position X="873.5840" Y="115.0080" />
@@ -138,4 +138,4 @@
       </ObjectData>
     </Content>
   </Content>
-</GameProjectFile>
+</GameFile>

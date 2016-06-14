@@ -1,4 +1,4 @@
-<UserData Version="2.3.3.0">
+<UserData Version="3.10.0.0">
   <Properties>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
@@ -28,23 +28,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="YouGet.csd" />
-          <FilePathData Path="gemreward.csd" />
-          <FilePathData Path="gemupgrade.csd" />
-          <FilePathData Path="DailyActivity.csd" />
-          <FilePathData Path="DailyActivitystate.csd" />
-          <FilePathData Path="gaikuang.csd" />
-          <FilePathData Path="EquipPopup.csd" />
-          <FilePathData Path="formationLayer.csd" />
-          <FilePathData Path="LoginGameCenter.csd" />
-          <FilePathData Path="shop.csd" />
-          <FilePathData Path="Money.csd" />
-          <FilePathData Path="toptitle.csd" />
-          <FilePathData Path="power.csd" />
-          <FilePathData Path="fight1.csd" />
-          <FilePathData Path="GamePassLayer.csd" />
+          <FilePathData Path="game_ui_tips.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="GamePassLayer.csd" />
+        <ActiveDocument Path="game_ui_tips.csd" />
       </Value>
     </Item>
   </Properties>

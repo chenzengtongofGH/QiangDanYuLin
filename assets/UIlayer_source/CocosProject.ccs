@@ -1,545 +1,101 @@
 <Solution>
-  <PropertyGroup Name="CocosProject" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="CocosProject" Version="3.10.0.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Project Name="MainScene.csd" Type="Scene" />
         <Folder Name="res">
           <Folder Name="csb">
             <Folder Name="ui">
+              <Folder Name="buttons">
+                <Image Name="b_2.png" />
+                <Image Name="b_3.png" />
+                <Image Name="btn_gray.png" />
+                <Image Name="btn_light.png" />
+                <Image Name="btn_normal.png" />
+                <Image Name="btn2.png" />
+                <Image Name="btn2_light.png" />
+                <Image Name="btn2_normal.png" />
+                <Image Name="cancel.png" />
+                <Image Name="checkbox2_bg.png" />
+                <Image Name="checkbox2_sel.png" />
+                <Image Name="confirm.png" />
+              </Folder>
               <Folder Name="equipment">
                 <Image Name="bg2.png" />
                 <Image Name="btn_equipsell1.png" />
                 <Image Name="btn_equipsell2.png" />
+                <Image Name="equip_di.png" />
+                <Image Name="fengexian.png" />
+                <Image Name="fengexian1.png" />
+                <Image Name="gaikuang.png" />
                 <Image Name="GS.png" />
                 <Image Name="jianbian.png" />
-                <Image Name="fengexian.png" />
-                <Image Name="gaikuang.png" />
                 <Image Name="jindu.png" />
                 <Image Name="zhan.png" />
-                <Image Name="fengexian1.png" />
-                <Image Name="equip_di.png" />
+              </Folder>
+              <Folder Name="login">
+                <Image Name="bgnew.png" />
+                <Image Name="dice.png" />
+                <Image Name="dice1.png" />
+                <Image Name="input1.png" />
+                <Image Name="input2.png" />
+                <Image Name="loadgame.png" />
+                <Image Name="loadgame1.png" />
+                <Image Name="logo.png" />
+                <Image Name="txt1.png" />
+                <Image Name="txt2.png" />
+                <Image Name="txt3.png" />
+              </Folder>
+              <Folder Name="main">
+                <Image Name="add.png" />
+                <Image Name="add2.png" />
+                <Image Name="bg.png" />
+                <Image Name="frame.png" />
+                <Image Name="money.png" />
+                <Image Name="next.png" />
+                <Image Name="next2.png" />
+                <Image Name="red1.png" />
+                <Image Name="red2.png" />
+                <Image Name="role.png" />
+                <Image Name="wordbg.png" />
+                <Image Name="yellow1.png" />
+                <Image Name="yellow2.png" />
+              </Folder>
+              <Folder Name="ui_tips">
+                <Image Name="trap.png" />
               </Folder>
               <Folder Name="win_lose_pause">
-                <Image Name="pause_word.png" />
-                <Image Name="pause_bg.png" />
+                <Image Name="bg1.png" />
+                <Image Name="bg2.png" />
+                <Image Name="bluelight.png" />
                 <Image Name="close.png" />
                 <Image Name="close2.png" />
                 <Image Name="continue.png" />
                 <Image Name="continue2.png" />
+                <Image Name="line.png" />
+                <Image Name="losetitle1.png" />
+                <Image Name="loseword.png" />
+                <Image Name="pause_bg.png" />
+                <Image Name="pause_word.png" />
                 <Image Name="quit.png" />
                 <Image Name="quit2.png" />
-                <Image Name="bg1.png" />
-                <Image Name="wintitle.png" />
                 <Image Name="turnlight.png" />
-                <Image Name="yellowlight.png" />
-                <Image Name="line.png" />
-                <Image Name="loseword.png" />
-                <Image Name="bg2.png" />
-                <Image Name="losetitle1.png" />
                 <Image Name="viewteam.png" />
                 <Image Name="viewteam2.png" />
-                <Image Name="bluelight.png" />
+                <Image Name="wintitle.png" />
                 <Image Name="winword2.png" />
-                <Image Name="exp.png" />
-                <Image Name="gradeBK4.png" />
-                <Image Name="a.png" />
-                <Image Name="b.png" />
-                <Image Name="c.png" />
-                <Image Name="s.png" />
-                <Image Name="di1.png" />
-                <Image Name="a_gray.png" />
-                <Image Name="b_gray.png" />
-                <Image Name="c_gray.png" />
-                <Image Name="s_gray.png" />
-                <Image Name="progressbar.png" />
-                <Image Name="pinjidi.png" />
-                <Image Name="firstS.png" />
-                <Image Name="title.png" />
-                <Image Name="FirstpassS.png" />
-                <Image Name="all_bg.png" />
-                <Image Name="Chests_close.png" />
-                <Image Name="Chests_open.png" />
-                <Image Name="netbreak.png" />
-                <Image Name="dingwei.png" />
-                <Image Name="hw_left.png" />
-                <Image Name="hw_right.png" />
-              </Folder>
-              <Folder Name="login">
-                <Image Name="bgnew.png" />
-                <Image Name="loadgame.png" />
-                <Image Name="dice.png" />
-                <Image Name="input1.png" />
-                <Image Name="input2.png" />
-                <Image Name="txt1.png" />
-                <Image Name="txt2.png" />
-                <Image Name="txt3.png" />
-                <Image Name="dice1.png" />
-                <Image Name="loadgame1.png" />
-                <Image Name="logo.png" />
-              </Folder>
-              <Folder Name="buttons">
-                <Image Name="b_2.png" />
-                <Image Name="b_3.png" />
-                <Image Name="btn2.png" />
-                <Image Name="checkbox2_bg.png" />
-                <Image Name="cancel.png" />
-                <Image Name="confirm.png" />
-                <Image Name="checkbox2_sel.png" />
-                <Image Name="btn_gray.png" />
-                <Image Name="btn_light.png" />
-                <Image Name="btn_normal.png" />
-                <Image Name="btn2_light.png" />
-                <Image Name="btn2_normal.png" />
-              </Folder>
-              <Folder Name="main">
-                <Image Name="achievement.png" />
-                <Image Name="activity.png" />
-                <Image Name="act_1.png" />
-                <Image Name="act_2.png" />
-                <Image Name="chat.png" />
-                <Image Name="chat_bg.png" />
-                <Image Name="config.png" />
-                <Image Name="control_bg.png" />
-                <Image Name="control_btn.png" />
-                <Image Name="control_sign.png" />
-                <Image Name="equip.png" />
-                <Image Name="exp_bar.png" />
-                <Image Name="follower.png" />
-                <Image Name="forge.png" />
-                <Image Name="gold.png" />
-                <Image Name="gold_bg.png" />
-                <Image Name="head.png" />
-                <Image Name="ingot.png" />
-                <Image Name="lv.png" />
-                <Image Name="mail.png" />
-                <Image Name="newinfo.png" />
-                <Image Name="package.png" />
-                <Image Name="parkout.png" />
-                <Image Name="party.png" />
-                <Image Name="pop_bg.png" />
-                <Image Name="pop_sign.png" />
-                <Image Name="vip.png" />
-                <Folder Name="map_bg">
-                  <Image Name="mainbg2.png" />
-                  <Image Name="mainbg3.png" />
-                  <Image Name="mainbg4.png" />
-                  <Image Name="mainbg5.png" />
-                  <Image Name="dazao.png" />
-                  <Image Name="fenjie.png" />
-                  <Image Name="fuben.png" />
-                  <Image Name="gonghui.png" />
-                  <Image Name="guaji.png" />
-                  <Image Name="jingjichang.png" />
-                  <Image Name="jiuguan.png" />
-                  <Image Name="paihangbang.png" />
-                  <Image Name="paimaihang.png" />
-                  <Image Name="pata.png" />
-                  <Image Name="txt_di.png" />
-                  <Image Name="youxiang.png" />
-                  <Image Name="zhanchang.png" />
-                  <Image Name="mainbg1_1.png" />
-                  <Image Name="mainbg1_2.png" />
-                  <Image Name="mainbg1_3.png" />
-                  <Image Name="mainbg6.png" />
-                  <Folder Name="jianzhu">
-                    <Image Name="fenjie_dazao.png" />
-                    <Image Name="fuben.png" />
-                    <Image Name="gonggao.png" />
-                    <Image Name="gonghui.png" />
-                    <Image Name="jinjichang.png" />
-                    <Image Name="jiuguan.png" />
-                    <Image Name="paihangbang.png" />
-                    <Image Name="paimaihang.png" />
-                    <Image Name="pata.png" />
-                    <Image Name="youxiang.png" />
-                    <Image Name="zhanchang.png" />
-                    <Image Name="dazao.png" />
-                  </Folder>
-                  <Image Name="gonggao.png" />
-                  <Image Name="chengqiang.png" />
-                  <Image Name="chengqiang1.png" />
-                  <Image Name="chengqiang2.png" />
-                  <Image Name="chengqiang3.png" />
-                </Folder>
-                <Image Name="add.png" />
-                <Image Name="music_off.png" />
-                <Image Name="music_open.png" />
-                <Image Name="friend.png" />
-                <Image Name="notice.png" />
-                <Image Name="txt1.png" />
-                <Image Name="btn_touming.png" />
-                <Image Name="btn_touming1.png" />
-                <Image Name="mask1.png" />
-                <Image Name="gold_bg1.png" />
-                <Image Name="newinfo2.png" />
-                <Image Name="activity1.png" />
-                <Image Name="chengjiu.png" />
-                <Image Name="chengjiu1.png" />
-                <Image Name="equip1.png" />
-                <Image Name="follower1.png" />
-                <Image Name="package1.png" />
-                <Image Name="parkout1.png" />
-                <Image Name="party1.png" />
-                <Image Name="task.png" />
-                <Image Name="task1.png" />
-                <Image Name="vip_di.png" />
-                <Image Name="control_btn1.png" />
-                <Image Name="head_jd.png" />
-                <Image Name="head_lv.png" />
-                <Image Name="chat1.png" />
-              </Folder>
-              <Folder Name="select_game">
-                <Image Name="beginG.png" />
-                <Image Name="bluegam.png" />
-                <Image Name="frame_S.png" />
-                <Image Name="frame_Sed.png" />
-                <Image Name="gamBack.png" />
-                <Image Name="graygam.png" />
-                <Image Name="greengam.png" />
-                <Image Name="jiugong.png" />
-                <Image Name="left_name_buttom.png" />
-                <Image Name="left_title_buttom.png" />
-                <Image Name="QuickFight.png" />
-                <Image Name="redgam.png" />
-                <Image Name="returnback.png" />
-                <Image Name="small_buttom.png" />
-                <Image Name="tabselected.png" />
-                <Image Name="tabselectedN.png" />
-                <Image Name="WarBtn.png" />
-                <Image Name="wipe_out.png" />
-                <Image Name="power.png" />
-                <Image Name="WarBtn1.png" />
-              </Folder>
-              <Folder Name="formation">
-                <Image Name="addrole.png" />
-                <Image Name="autochangeequipBtn.png" />
-                <Image Name="btnD.png" />
-                <Image Name="btnS.png" />
-                <Image Name="button1Y.png" />
-                <Image Name="Lock.png" />
-                <Image Name="MagicCircle.png" />
-                <Image Name="nameBg.png" />
-                <Image Name="redbutton.png" />
-                <Image Name="SelectedPic.png" />
-                <Image Name="smallK.png" />
-                <Image Name="Sp9tan.png" />
-                <Image Name="yeqiandi9Sp.png" />
-                <Image Name="fixBtn.png" />
-                <Image Name="gradeBK1.png" />
-                <Image Name="equip1.png" />
-                <Image Name="equip2.png" />
-                <Image Name="equip3.png" />
-                <Image Name="equip5.png" />
-                <Image Name="equip6.png" />
-                <Image Name="equip7.png" />
-                <Image Name="equip8.png" />
-                <Image Name="Nopass.png" />
-                <Image Name="addrole2.png" />
-                <Image Name="smallBg.png" />
-                <Image Name="txt_jineng.png" />
-                <Image Name="txt_shuxing.png" />
-                <Image Name="bg_tongyong.png" />
-                <Image Name="namebg1.png" />
-              </Folder>
-              <Folder Name="battlearray">
-                <Image Name="button.png" />
-                <Image Name="migiccircle.png" />
-                <Image Name="number.png" />
-                <Image Name="xian.png" />
-                <Image Name="xinxijiange.png" />
-                <Image Name="xiugaiicon.png" />
-                <Image Name="yeqian1.png" />
-                <Image Name="yeqian2.png" />
-                <Image Name="word.png" />
-                <Image Name="word1.png" />
-                <Image Name="word2.png" />
-                <Image Name="line.png" />
-                <Image Name="add.png" />
-                <Image Name="di_xian_9.png" />
-                <Image Name="name_under.png" />
-                <Image Name="wenhao.png" />
-                <Image Name="yeqian_under9.png" />
-              </Folder>
-              <Folder Name="reassignment">
-                <Image Name="advanced.png" />
-                <Image Name="line.png" />
-                <Image Name="lock.png" />
-                <Image Name="number.png" />
-                <Image Name="particulars.png" />
-                <Image Name="putongbtn.png" />
-                <Image Name="smallbtn1.png" />
-                <Image Name="smallbtn2.png" />
-                <Image Name="smallbtn3.png" />
-                <Image Name="begain.png" />
-                <Image Name="equipresolve.png" />
-                <Image Name="piliang.png" />
-                <Image Name="alldischarge.png" />
-                <Image Name="lock2.png" />
-                <Image Name="tiaodi.png" />
-                <Image Name="sell.png" />
-                <Image Name="arrows.png" />
-                <Image Name="gemupgrade.png" />
-                <Image Name="jindutiao.png" />
-                <Image Name="lucky.png" />
-                <Image Name="punching.png" />
-                <Image Name="upgrade.png" />
-                <Image Name="di_9.png" />
-                <Image Name="equip_par.png" />
-                <Image Name="gem_par.png" />
-                <Image Name="graybtnglow.png" />
-                <Image Name="inunder_9.png" />
-                <Image Name="jianqu.png" />
-                <Image Name="smalldi_9.png" />
-                <Image Name="yeqian3.png" />
-                <Image Name="yeqian4.png" />
-              </Folder>
-              <Folder Name="tavern">
-                <Image Name="tavernbg1.png" />
-                <Image Name="tavernbg2.png" />
-                <Image Name="diamond.png" />
-                <Image Name="jianjiao.png" />
-                <Image Name="duihua_9.png" />
-                <Image Name="txt_1.png" />
-                <Image Name="txt_2.png" />
-                <Image Name="txt_3.png" />
-                <Image Name="txt_4.png" />
-              </Folder>
-              <Folder Name="shop">
-                <Image Name="bg.png" />
-                <Image Name="lucky.png" />
-                <Image Name="tai.png" />
-                <Image Name="shop1.png" />
-                <Image Name="title1.png" />
-                <Image Name="kuang1.png" />
-                <Image Name="money_di.png" />
-                <Image Name="di1.png" />
-                <Image Name="item.png" />
-              </Folder>
-              <File Name="DroidSansFallback_0.ttf" />
-              <Folder Name="forge">
-                <Image Name="forge.png" />
-                <Image Name="dazao.png" />
-                <Image Name="icon_forge.png" />
-                <Image Name="icon_forge1.png" />
-                <Image Name="di_yongyou.png" />
-                <Image Name="lv1.png" />
-                <Image Name="lv2.png" />
-                <Image Name="txt_1.png" />
-                <Image Name="txt_2.png" />
-              </Folder>
-              <Folder Name="levelchoose">
-                <Folder Name="1">
-                  <Image Name="first.png" />
-                  <Image Name="light.png" />
-                  <Image Name="1_L.png" />
-                  <Image Name="2_L.png" />
-                  <Image Name="3_L.png" />
-                  <Image Name="4_L.png" />
-                  <Image Name="5_L.png" />
-                  <Image Name="6_L.png" />
-                  <Image Name="1_n.png" />
-                  <Image Name="2_n.png" />
-                  <Image Name="3_n.png" />
-                  <Image Name="4_n.png" />
-                  <Image Name="5_n.png" />
-                  <Image Name="6_n.png" />
-                  <Image Name="boxlevel1.png" />
-                  <Image Name="boxlevel2.png" />
-                  <Image Name="bg.png" />
-                </Folder>
-                <Folder Name="leveldetails">
-                  <Image Name="di2.png" />
-                  <Image Name="levelgem.png" />
-                  <Image Name="flower.png" />
-                  <Image Name="bg_mibai2.png" />
-                  <Image Name="bg_mibai3.png" />
-                  <Image Name="left_9s1.png" />
-                  <Image Name="left_9s2.png" />
-                  <Image Name="yeqian_light.png" />
-                  <Image Name="yeqian_normal.png" />
-                  <Image Name="k_7.png" />
-                  <Image Name="k_8.png" />
-                  <Image Name="txt_1.png" />
-                  <Image Name="di_black.png" />
-                </Folder>
-              </Folder>
-              <Folder Name="DailyActivity">
-                <Image Name="get.png" />
-                <Image Name="go.png" />
-                <Image Name="tiaodi.png" />
-                <Image Name="di_title.png" />
-              </Folder>
-              <Folder Name="EquipResolve">
-                <Image Name="qhjh.png" />
-                <Image Name="resolve.png" />
-                <Image Name="yijian.png" />
-                <Image Name="bg.png" />
-                <Image Name="title.png" />
-              </Folder>
-              <Folder Name="followLayer">
-                <Image Name="blackBg.png" />
-                <Image Name="back1.png" />
-                <Image Name="back2.png" />
-                <Image Name="all.png" />
-                <Image Name="jinzhan.png" />
-                <Image Name="yuancheng.png" />
-                <Image Name="skillkuang.png" />
-                <Image Name="kuang1.png" />
-                <Image Name="add.png" />
-                <Image Name="bg_alluse.png" />
-                <Image Name="bg_allusesmall.png" />
-                <Image Name="followdetail.png" />
-                <Image Name="namedetail.png" />
-                <Image Name="shangdi.png" />
-                <Image Name="role_kuang.png" />
-                <Image Name="titlename.png" />
-                <Image Name="tophuawen.png" />
-                <Image Name="bg_alluse1.png" />
-                <Image Name="role_kuang1.png" />
-                <Image Name="role_kuang2.png" />
-              </Folder>
-              <Folder Name="onhook">
-                <Image Name="down.png" />
-                <Image Name="fastfight.png" />
-                <Image Name="pickup.png" />
-                <Image Name="up.png" />
-                <Image Name="onhooktitle.png" />
-                <Image Name="fasttitle.png" />
-                <Image Name="fastdi.png" />
-                <Image Name="pickuptitle.png" />
-                <Image Name="choose.png" />
-                <Image Name="tick.png" />
-                <Image Name="offlineaward.png" />
-                <Image Name="sale.png" />
-                <Image Name="again.png" />
-                <Image Name="back.png" />
-                <Image Name="hint.png" />
-                <Image Name="netbreak.png" />
-                <Image Name="btn_1.png" />
-                <Image Name="btn_2.png" />
-                <Image Name="btn_3.png" />
-                <Image Name="btn_4.png" />
-              </Folder>
-              <Folder Name="guide">
-                <Image Name="guider.png" />
-                <Image Name="kuang.png" />
-                <Image Name="huawen.png" />
-              </Folder>
-              <Folder Name="Serverselect">
-                <Image Name="bg_big.png" />
-                <Image Name="btn_light1.png" />
-                <Image Name="btn_normal1.png" />
-                <Image Name="line.png" />
-                <Image Name="txt1.png" />
-                <Image Name="bg_small.png" />
-                <Image Name="txt2.png" />
-              </Folder>
-              <Folder Name="upgrade">
-                <Image Name="bg_big.png" />
-                <Image Name="bg_small.png" />
-                <Image Name="streamer.png" />
-                <Image Name="title.png" />
-                <Image Name="di_1.png" />
-                <Image Name="img_1.png" />
-                <Image Name="img_2.png" />
-                <Image Name="Activity4.png" />
-                <Image Name="arrow.png" />
-                <Image Name="di_gold.png" />
-              </Folder>
-              <Folder Name="j_m_q_h">
-                <Image Name="hydh_1.png" />
-                <Image Name="hydh_bj2.png" />
-                <Image Name="hydh_bts.png" />
-                <Image Name="hydh_cl5.png" />
-                <Image Name="hydh_cl6.png" />
-                <Image Name="hydh_cl7.png" />
-                <Image Name="hydh_mb1.png" />
-                <Image Name="hydh_mb2.png" />
-                <Image Name="hydh_mb3.png" />
-                <Image Name="hydh_mb4.png" />
-                <Image Name="hydh_mb5.png" />
-                <Image Name="hydh_mb6.png" />
-                <Image Name="hydh_mb7.png" />
-                <Image Name="hydh_mb8.png" />
-                <Image Name="hydh_yy.png" />
-                <Image Name="hydh_z4.png" />
-                <Image Name="hydh_cl_1.png" />
-                <Image Name="hydh_cl_2.png" />
-                <Image Name="hydh_cl_3.png" />
-                <Image Name="hydh_cl_4.png" />
-                <Image Name="hydh_lt_1.png" />
-                <Image Name="hydh_z_1.png" />
-                <Image Name="hydh_z_2.png" />
-                <Image Name="hydh_z_3.png" />
-              </Folder>
-              <Folder Name="fight">
-                <Image Name="jindu.png" />
-                <Image Name="jindu_di.png" />
-                <Image Name="jobicon.png" />
-                <Image Name="level.png" />
-                <Image Name="roleicon.png" />
+                <Image Name="yellowlight.png" />
               </Folder>
             </Folder>
           </Folder>
         </Folder>
-        <Project Name="GamePauseLayer.csd" Type="Layer" />
-        <Project Name="GamePassLayer.csd" Type="Layer" />
+        <Folder Name="ui_tips">
+          <Image Name="trap.png" />
+        </Folder>
+        <Project Name="game_ui_tips.csd" Type="Layer" />
         <Project Name="GameLoseLayer.csd" Type="Layer" />
-        <Project Name="createitems.csd" Type="Layer" />
-        <Project Name="mainframelayer.csd" Type="Layer" />
-        <Project Name="formationLayer.csd" Type="Layer" />
-        <Project Name="Money.csd" Type="Layer" />
-        <Project Name="Diamond.csd" Type="Layer" />
-        <Project Name="BattleArray.csd" Type="Layer" />
-        <Project Name="EuipList.csd" Type="Layer" />
-        <Project Name="follow1.csd" Type="Layer" />
-        <Project Name="power.csd" Type="Layer" />
-        <Project Name="gem.csd" Type="Layer" />
-        <Project Name="gemupgrade.csd" Type="Layer" />
-        <Project Name="tavern.csd" Type="Layer" />
-        <Project Name="punching.csd" Type="Layer" />
-        <Project Name="shop.csd" Type="Layer" />
-        <Project Name="forge.csd" Type="Layer" />
-        <Project Name="Levelchoose1.csd" Type="Layer" />
-        <Project Name="DailyActivity.csd" Type="Layer" />
-        <Project Name="YouGet.csd" Type="Layer" />
-        <Project Name="DailyActivitystate.csd" Type="Layer" />
-        <Project Name="EquipResolve.csd" Type="Layer" />
-        <Project Name="onhook.csd" Type="Layer" />
-        <Project Name="onhook1.csd" Type="Layer" />
-        <Project Name="onhook2.csd" Type="Layer" />
-        <Project Name="onhook3.csd" Type="Layer" />
-        <Project Name="Bulksale.csd" Type="Layer" />
-        <Project Name="netbreak.csd" Type="Layer" />
-        <Project Name="hint.csd" Type="Layer" />
-        <Project Name="ServerChoose.csd" Type="Layer" />
-        <Project Name="followdetail.csd" Type="Layer" />
-        <Project Name="toptitle.csd" Type="Layer" />
-        <Project Name="levelchoosedetail.csd" Type="Layer" />
-        <Project Name="EquipPopup.csd" Type="Layer" />
-        <Project Name="guide_caozuo.csd" Type="Layer" />
-        <Project Name="guide_jieshao.csd" Type="Layer" />
-        <Project Name="getfollowLayer.csd" Type="Layer" />
-        <Project Name="LoginGameCenter.csd" Type="Layer" />
-        <Project Name="LoginGame.csd" Type="Layer" />
-        <Project Name="rolecreation.csd" Type="Layer" />
-        <Project Name="upgrade.csd" Type="Layer" />
-        <Project Name="buygold.csd" Type="Layer" />
-        <Project Name="skill.csd" Type="Layer" />
-        <Project Name="gaikuang.csd" Type="Layer" />
-        <Project Name="Loading.csd" Type="Layer" />
-        <Project Name="followdetail_jindu.csd" Type="Layer" />
-        <Project Name="huan_ye.csd" Type="Layer" />
-        <Project Name="fight1.csd" Type="Layer" />
-        <Project Name="buypower.csd" Type="Layer" />
-        <Project Name="gemreward.csd" Type="Layer" />
-        <Project Name="yindao.csd" Type="Layer" />
-        <Project Name="EuipList1.csd" Type="Layer" />
-        <Project Name="EuipList2.csd" Type="Layer" />
-        <Project Name="EuipList3.csd" Type="Layer" />
-        <Project Name="menu1.csd" Type="Layer" />
-        <Project Name="menu.csd" Type="Layer" />
+        <Project Name="MainLayer.csd" Type="Layer" />
+        <Project Name="MainScene.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

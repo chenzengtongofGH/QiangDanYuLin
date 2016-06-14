@@ -5,6 +5,7 @@
 require("app.map.mapnode")
 require("app.data.skill")
 CMapRole = class("CMapRole", CMapNode)
+local maprole_equip = require("app.map.maprole_equip");
 local SHOW_DEBUG = true;
 
 function CMapRole:ctor(id, role,scale,fight_layer)
@@ -61,8 +62,21 @@ function CMapRole:init()
     self.render:setScale(self:get_conf_scale());
     local render_size = self.render:getContentSize();
     self.render:addTo(self,2);
+    local equip_info = self.role.equip_Id_table;
 
+    for k,v in pairs(equip_info) do 
+        local Equip_id = math.ceil(v);
+        local equip_db = Cequipdb_interface.new(Equip_id);
+        self:ChangeLeftWeapon(equip_db.equip_json);
+    end
+
+    --self:create_render(self.init_modle_info); 
 end
+--主手
+function CMapRole:ChangeLeftWeapon(reskey)
+    self.leftweapon = maprole_equip.change_equip(self.render, BONE_NAME.L_WEAPON, reskey, nil, "061"); 
+end
+
 function CMapRole:get_role_info()
     return self.role;
 end

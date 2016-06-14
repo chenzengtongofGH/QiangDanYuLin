@@ -8,6 +8,7 @@ require "cocos.init"
 require("gameconfig")
 require("app.common.init")
 require("app.data.role_interface")
+require("app.data.equip_interface")
 g_game_layer  = nil;
 local function main()
     require("app.MyApp"):create():run()

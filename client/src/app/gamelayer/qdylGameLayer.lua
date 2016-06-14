@@ -7,6 +7,7 @@ local gScheduler = require("skygame.scheduler")
 local monster_manager = require("app.map.monster_manager")
 local RUN_CONF = require("app.map.runframeconf");
 local Map_UI_Layer = require("app.gamelayer.game_map_ui_layer")
+local game_finish_layer = require("app.gamelayer.game_finish")
 require("app.map.map_role")
 require("app.fight.fight_itembase");
 require("app.fight.fight_moveitem");
@@ -17,6 +18,7 @@ local envent_id_list =
     "EVENT_ADD_FIGHTITEMOBJ_TO_MAP",
     "Remove_Role_In_Map",
     "Update_Current_Hp",
+    "Event_Play_Bomb",
 }
 
 function qdylGameLayer:ctor()
@@ -36,6 +38,8 @@ function qdylGameLayer:ctor()
 end
 function qdylGameLayer:realse()
     self:removeEvent();
+    self:removeFromParent(true);
+
 end
 function qdylGameLayer:TouchLayerB(touch, event)
     --print("~~~~~~~TouchLayerB")
@@ -69,6 +73,10 @@ function qdylGameLayer:TouchLayerE(touch, event)
     self.bool_touch = false;
 end
 function qdylGameLayer:update()
+    if self.map_hero:is_dead() then 
+        gScheduler.unscheduleGlobal(self.updatetimer);
+        self:game_over();
+    end
     if self.bool_touch then 
            local des_x =  self.current_Touch_pos.x - display.cx;
            local des_y = self.current_Touch_pos.y - display.cy;
@@ -123,10 +131,12 @@ function qdylGameLayer:update()
 
            local ui_layer_posX = self.UILayer:getPositionX();
            local ui_layer_posY = self.UILayer:getPositionY();
-           if ui_layer_posX + speedx >-(1136*2 - display.width)   and ui_layer_posX + speedx < 0 then 
+           if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
                 self.UILayer:setPositionX(ui_layer_posX+speedx);
            end
-           if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(640*2 - display.height) then 
+
+           
+           if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(Game_Max_Heihgt - display.height) then --到达y边界
                 self.UILayer:setPositionY(ui_layer_posY+speedy);
            end
            --convertToNodeSpace
@@ -177,11 +187,38 @@ function qdylGameLayer:process_Ai(cur_frame_interval)
     --local cur_frame_interval = curtime - self.last_update_time;-- / 1000为1s
     --self.last_update_time = curtime;
 end
+function qdylGameLayer:Play_Bomb_Action()
+    local bomb_action_pos = self.Role_Pos_Conver_Space;
+
+    local jumpTo1 =  cc.JumpTo:create(0.1,cc.p(5,5),10,1);
+    local jumpTo2  = cc.JumpTo:create(0.1,cc.p(-5,-5),10,1);
+    local jumpTo3  = cc.JumpTo:create(0.1,cc.p(5,-5),10,1);
+    local jumpTo4  = cc.JumpTo:create(0.1,cc.p(-5,5),10,1);
+    local jumpTo5  = cc.JumpTo:create(0.1,cc.p(0,0),10,1);
+    self:runAction(cc.Sequence:create(jumpTo1,jumpTo2,jumpTo3,jumpTo4,jumpTo5));
+ 
+    local animation = cc.Animation:create()
+    for i=0,5 do 
+        local sprite_name = sg_loadResources("res#normal#ui#bomb#8_"..i);
+        animation:addSpriteFrameWithFile(sprite_name);
+    end
+    local bomb_sprite = CreateSprite("res#normal#ui#bomb#8_0");
+    self:addChild(bomb_sprite);
+    bomb_sprite:setPosition(bomb_action_pos);
+    animation:setDelayPerUnit(0.1);
+    --local animation = cc.Animation:createWithSpriteFrames(animFrames, 0.3)
+    bomb_sprite:runAction( cc.Sequence:create( cc.Animate:create(animation),cc.RemoveSelf:create() ));
+    --print("play_bomb");
+end
 function qdylGameLayer:ready()
     self.Game_status = RUN_CONF.STATE.READY
     for k,v in pairs(self.monster_manager_list) do 
         v:StopRun();
     end
+end
+function qdylGameLayer:game_over()
+    self.finish = game_finish_layer.new();
+    self:addChild(self.finish,View_Ozder.Game_Finish);
 end
 function qdylGameLayer:init()
     self.rootLayer = display.newLayer();
@@ -218,7 +255,7 @@ function qdylGameLayer:init()
     self.map_hero:set_camp(CAMP_TYPE.ALLIANCE);
 	self.Role_obj_Layer:addChild( self.map_hero );
     self.map_hero:setPosition(display.cx,display.cy);
-    self.map_hero:set_hp(100);
+    self.map_hero:set_hp(10);
     self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
     
     --   self.map_hero:convertToNodeSpace(cc.p(self.UILayer:getPositionX(),self.UILayer:getPositionY()));
@@ -238,6 +275,7 @@ function qdylGameLayer:init()
 
     self.Map_Ui_Layer = Map_UI_Layer.new();
     self:addChild(self.Map_Ui_Layer,View_Ozder.Top_UI_Z);
+    self:update_current_role_hp(self.map_hero:get_hp());
 
 end
 function qdylGameLayer:update_current_role_hp(hp)
@@ -284,6 +322,8 @@ function qdylGameLayer:OnEvent(event, ...)
         self:remove_role_in_map(args[1],args[2]);
     elseif event == "Update_Current_Hp" then 
         self:update_current_role_hp(args[1]);
+    elseif event == "Event_Play_Bomb" then 
+        self:Play_Bomb_Action();
     end 
 end
 

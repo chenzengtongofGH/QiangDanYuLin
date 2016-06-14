@@ -18,6 +18,7 @@ View_Ozder =
     Role = 3,
     UI_Z = 4,
     Top_UI_Z = 5,
+    Game_Finish = 100,
 }
 
 Jump_distance = 220;
@@ -54,6 +55,26 @@ ACT_INFO = {
     { MAPROLE_ACTION_STATE.VIGILANCE, "jingjue", - 1 },
     { MAPROLE_ACTION_STATE.STAND_ATK, "zlgongji", 1 },
     { MAPROLE_ACTION_STATE.COMMON, "daiji", -1 },
+}
+
+-- 骨骼名字
+BONE_NAME = 
+{
+    L_WEAPON = "zhushou",
+    R_WEAPON = "fushou",
+    R_2WEAPON = "fushou_jiandai",
+    R_3WEAPON = "fushou_sword" ,
+    HEAD = "tou",
+    SHOULDER = "jian",
+    CLOTH = "yifu",
+    CLOTH_SHOULDER_TOP_LEFT = "yixiuTL",
+    CLOTH_SHOULDER_TOP_RIGHT= "yixiuTR",
+    CLOTH_SHOULDER_BUTTOM_LEFT = "yixiuBL",
+    CLOTH_SHOULDER_BUTTOM_RIGHT = "yixiuBR",
+    CLOTH_LEG_LEFT = "kutuiL",
+    CLOTH_LEG_RIGHT = "kutuiR",
+    SHOES_LEFT            = "shoesL",
+    SHOES_RIGHT          =  "shoesR"
 }
 
 -- 战斗参数

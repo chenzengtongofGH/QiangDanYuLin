@@ -27,3 +27,8 @@ echo "---skill---"
 cd skill
 python start.py %3
 cd ..
+
+echo "---equip---"
+cd equip
+python start.py %3
+cd ..

@@ -5,7 +5,6 @@
 local game_map_ui_layer = class("game_map_ui_layer", cc.load("mvc").ViewBase)
 
 function game_map_ui_layer:ctor()
-    
     self:init();
 end
 
@@ -22,6 +21,13 @@ function game_map_ui_layer:init()
     current_hp_label:setPosition( 100, ui_hp_sprite:getContentSize().height / 2);
 
     self.current_hp_label = current_hp_label;
+
+    self.root_csb = sg_load_csb("res#csb#ui#game_ui_tips");
+    self:addChild(self.root_csb);
+    
+    local bomb_btn = sg_get_child_by_name(self.root_csb,"Button_bomb");
+    sg_ui.addTouchEventListener_music(bomb_btn,function() EventSystem:pushEvent("Event_Play_Bomb") end );
+
 end
 
 function game_map_ui_layer:set_current_hp(c_hp)
