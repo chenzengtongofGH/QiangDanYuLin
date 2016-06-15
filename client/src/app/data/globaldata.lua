@@ -2,6 +2,13 @@
 --Author : Bookse
 --Date   : 2016/6/2
 --此文件由[BabeLua]插件自动生成
+require("app.data.G_Hero");
+
+G_Hero = nil;
+function g_init_gamedata()
+    G_Hero = CHero.new();
+end
+
 -- 详细类型
 SKILL_DETAIL = 
 {

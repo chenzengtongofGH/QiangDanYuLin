@@ -57,6 +57,10 @@ ACT_INFO = {
     { MAPROLE_ACTION_STATE.COMMON, "daiji", -1 },
 }
 
+ITEM_LIST_TYPE = 
+{
+    BOMB_TYPE = 1,
+}
 -- 骨骼名字
 BONE_NAME = 
 {

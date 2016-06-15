@@ -49,6 +49,9 @@ function monster_manager:del_monster(roleId,bool_crash)
         end
     end
 end
+function monster_manager:get_role_list()
+    return self.monster_list;
+end
 function monster_manager:process(curtime,map_role,role_x,role_y)
     
     local attack_space = map_role:get_role_info().attack_range;--map_role:get_role_info().attack_range; attack_range;
@@ -88,8 +91,26 @@ function monster_manager:process(curtime,map_role,role_x,role_y)
             end
         end
     end
+end
+function monster_manager:clear_space_role(role,item_data)
+    local damage = item_data.item_damage or 0;
+    local point_pos = role:get_Pos();
+    local attack_space = role:get_role_info().attack_range;
+    local currentRole_pos_X,currentRole_pos_Y = point_pos.x,point_pos.y;
+    for k,v in pairs(self.monster_list) do 
+        local des_x =  v:getPositionX() - currentRole_pos_X;
+        local des_y = v:getPositionY() - currentRole_pos_Y;
+        local three_line = math.sqrt(des_x*des_x + des_y*des_y);
 
-
+        if three_line < attack_space then 
+            --info.des_hp
+            local info = {
+            ["des_hp"] = damage;
+            }
+            v:be_attack(info);
+            --self:del_monster(v.id);
+        end
+    end
 end
 function monster_manager:update_monster(rolex,roley)
      if #self.monster_list < 10 then --在地图上随机产生
@@ -98,7 +119,7 @@ function monster_manager:update_monster(rolex,roley)
     
     local currentRole_pos_X = rolex;--self.root_layer:getPositionX() +  self.root_width * 3 / 2 
     local currentRole_pos_Y =roley;--self.root_layer:getPositionY() +self.root_height *3 / 2;
-    --print("current_pos:"..self.root_layer:getPositionX()..",:"..currentRole_pos_X..",Y"..currentRole_pos_Y);
+    
     for k,v in pairs(self.monster_list) do --所有有东西朝一个点跑过去
         local monster_speed = v:get_role_info().speed / 100;
 

@@ -63,6 +63,7 @@
               </Folder>
               <Folder Name="ui_tips">
                 <Image Name="trap.png" />
+                <Image Name="head_lv.png" />
               </Folder>
               <Folder Name="win_lose_pause">
                 <Image Name="bg1.png" />

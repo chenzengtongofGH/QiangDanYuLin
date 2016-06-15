@@ -32,3 +32,8 @@ echo "---equip---"
 cd equip
 python start.py %3
 cd ..
+
+echo "---item---"
+cd item
+python start.py %3
+cd ..

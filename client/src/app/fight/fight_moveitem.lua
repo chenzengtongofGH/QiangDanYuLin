@@ -72,7 +72,11 @@ function CFightMoveItem:ctor(r, speed, effinfo, hitcb,  hitnum, target_type, whi
     EventSystem:pushEvent("EVENT_ADD_FIGHTITEM_TO_LIST", self);
     EventSystem:pushEvent("EVENT_ADD_FIGHTITEMOBJ_TO_MAP", self.map_obj);
 end
-
+function CFightMoveItem:get_pos()
+    if G_isUserDataValid(self.map_obj) then 
+        return self.map_obj:getPosition();
+    end
+end
 function CFightMoveItem:update(frame_interval)
     if frame_interval == 0 then
         return;

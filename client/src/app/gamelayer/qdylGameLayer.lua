@@ -187,7 +187,14 @@ function qdylGameLayer:process_Ai(cur_frame_interval)
     --local cur_frame_interval = curtime - self.last_update_time;-- / 1000为1s
     --self.last_update_time = curtime;
 end
-function qdylGameLayer:Play_Bomb_Action()
+function qdylGameLayer:Play_Bomb_Action(Item_type)
+    local item_data = Citemdb_interface.new(Item_type);
+
+    if G_Hero:get_item_num() <= 0 then 
+        return ;
+    end
+    G_Hero:set_item_num(G_Hero:get_item_num() - 1);
+    self.Map_Ui_Layer:update_item_count();
     local bomb_action_pos = self.Role_Pos_Conver_Space;
 
     local jumpTo1 =  cc.JumpTo:create(0.1,cc.p(5,5),10,1);
@@ -196,19 +203,29 @@ function qdylGameLayer:Play_Bomb_Action()
     local jumpTo4  = cc.JumpTo:create(0.1,cc.p(-5,5),10,1);
     local jumpTo5  = cc.JumpTo:create(0.1,cc.p(0,0),10,1);
     self:runAction(cc.Sequence:create(jumpTo1,jumpTo2,jumpTo3,jumpTo4,jumpTo5));
- 
-    local animation = cc.Animation:create()
-    for i=0,5 do 
-        local sprite_name = sg_loadResources("res#normal#ui#bomb#8_"..i);
-        animation:addSpriteFrameWithFile(sprite_name);
-    end
-    local bomb_sprite = CreateSprite("res#normal#ui#bomb#8_0");
-    self:addChild(bomb_sprite);
-    bomb_sprite:setPosition(bomb_action_pos);
-    animation:setDelayPerUnit(0.1);
-    --local animation = cc.Animation:createWithSpriteFrames(animFrames, 0.3)
-    bomb_sprite:runAction( cc.Sequence:create( cc.Animate:create(animation),cc.RemoveSelf:create() ));
+    
+    self.map_hero:add_bomb_action(item_data);
+    
+
+    self:clear_space_damage(item_data);
     --print("play_bomb");
+end
+function qdylGameLayer:clear_space_damage(item_data)--清理对应的东西 
+    --self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y
+    for k,v in pairs(self.fight_items) do 
+        if v and G_isUserDataValid(v.map_obj) then 
+            local obj_x,obj_y = v:get_pos();
+            local des_x =  obj_x - self.Role_Pos_Conver_Space.x;
+            local des_y = obj_y - self.Role_Pos_Conver_Space.y;
+            local three_line = math.sqrt(des_x*des_x + des_y*des_y);
+            local attack_space = self.map_hero:get_role_info().attack_range;
+            if three_line < attack_space then --self.item_type, self.id
+                self:remove_fightitem(v.item_type,v.id);
+            end
+        end
+    end
+
+    self.monster_manager_list:clear_space_role(self.map_hero,item_data);
 end
 function qdylGameLayer:ready()
     self.Game_status = RUN_CONF.STATE.READY
@@ -323,7 +340,7 @@ function qdylGameLayer:OnEvent(event, ...)
     elseif event == "Update_Current_Hp" then 
         self:update_current_role_hp(args[1]);
     elseif event == "Event_Play_Bomb" then 
-        self:Play_Bomb_Action();
+        self:Play_Bomb_Action(args[1]);
     end 
 end
 

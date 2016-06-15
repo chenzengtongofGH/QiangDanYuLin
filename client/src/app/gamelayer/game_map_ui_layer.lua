@@ -26,10 +26,20 @@ function game_map_ui_layer:init()
     self:addChild(self.root_csb);
     
     local bomb_btn = sg_get_child_by_name(self.root_csb,"Button_bomb");
-    sg_ui.addTouchEventListener_music(bomb_btn,function() EventSystem:pushEvent("Event_Play_Bomb") end );
+    sg_ui.addTouchEventListener_music(bomb_btn,function() EventSystem:pushEvent("Event_Play_Bomb",ITEM_LIST_TYPE.BOMB_TYPE) end );
+
+
+    local item_nums_sprite = sg_get_child_by_name(self.root_csb, "Item_Count");
+    local item_nums_label_TTF = sg_ui.LabelTTF(G_Hero:get_item_num(),nil,24);
+    item_nums_sprite:addChild(item_nums_label_TTF);
+    item_nums_label_TTF:setPosition(item_nums_sprite:getContentSize().width/2,item_nums_sprite:getContentSize().height/2);
+
+    self.item_nums_label_TTF = item_nums_label_TTF;
 
 end
-
+function game_map_ui_layer:update_item_count()
+    self.item_nums_label_TTF:setString(G_Hero:get_item_num());
+end
 function game_map_ui_layer:set_current_hp(c_hp)
     self.current_hp_label:setString(c_hp);
 end

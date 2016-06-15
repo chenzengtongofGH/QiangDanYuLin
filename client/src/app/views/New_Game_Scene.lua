@@ -13,6 +13,7 @@ local envent_id_list =
 
 function New_Game_Scene:onCreate()
    print("on_create"); 
+   g_init_gamedata();
    self:registeEvent();
    self.gamelayer = GameLayer.new();
    g_game_layer = self.gamelayer;

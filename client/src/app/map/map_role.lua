@@ -72,6 +72,26 @@ function CMapRole:init()
 
     --self:create_render(self.init_modle_info); 
 end
+function CMapRole:add_bomb_action(item_data)
+    
+    if item_data then 
+        local both_image_name = item_data.item_image;
+        local item_image_count = item_data.item_count;
+        local animation = cc.Animation:create()
+        for i=0,item_image_count do 
+            local sprite_name = sg_loadResources(both_image_name..i);
+            animation:addSpriteFrameWithFile(sprite_name);
+        end
+        local bomb_sprite = CreateSprite(both_image_name .. "0");
+        bomb_sprite:addTo(self,3);
+        --self:addChild(bomb_sprite); self.render:getContentSize();
+        bomb_sprite:setPosition(cc.p(0,bomb_sprite:getContentSize().height / 2));
+        animation:setDelayPerUnit(0.1);
+        
+        bomb_sprite:runAction( cc.Sequence:create( cc.Animate:create(animation),cc.RemoveSelf:create() ));
+    end
+    
+end
 --主手
 function CMapRole:ChangeLeftWeapon(reskey)
     self.leftweapon = maprole_equip.change_equip(self.render, BONE_NAME.L_WEAPON, reskey, nil, "061"); 
