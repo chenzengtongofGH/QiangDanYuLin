@@ -8,6 +8,7 @@ local monster_manager = require("app.map.monster_manager")
 local RUN_CONF = require("app.map.runframeconf");
 local Map_UI_Layer = require("app.gamelayer.game_map_ui_layer")
 local game_finish_layer = require("app.gamelayer.game_finish")
+local Rock_UI_layer = require("app.gamelayer.Game_Rocker")
 require("app.map.map_role")
 require("app.fight.fight_itembase");
 require("app.fight.fight_moveitem");
@@ -19,6 +20,7 @@ local envent_id_list =
     "Remove_Role_In_Map",
     "Update_Current_Hp",
     "Event_Play_Bomb",
+    "Event_Change_Bomb",
 }
 
 function qdylGameLayer:ctor()
@@ -34,7 +36,9 @@ function qdylGameLayer:ctor()
     self:init();
     
     self.monster_manager_list = monster_manager.new(self.UILayer);
-   
+    self.rock_layer = Rock_UI_layer.new();
+    self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
+    self.rock_layer:setPosition(100,100);
 end
 function qdylGameLayer:realse()
     self:removeEvent();
@@ -206,9 +210,11 @@ function qdylGameLayer:Play_Bomb_Action(Item_type)
     
     self.map_hero:add_bomb_action(item_data);
     
-
     self:clear_space_damage(item_data);
     --print("play_bomb");
+end
+function qdylGameLayer:change_role_bomb()
+    print("change_role_bomb");
 end
 function qdylGameLayer:clear_space_damage(item_data)--清理对应的东西 
     --self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y
@@ -341,6 +347,8 @@ function qdylGameLayer:OnEvent(event, ...)
         self:update_current_role_hp(args[1]);
     elseif event == "Event_Play_Bomb" then 
         self:Play_Bomb_Action(args[1]);
+    elseif event == "Event_Change_Bomb" then 
+        self:change_role_bomb();
     end 
 end
 

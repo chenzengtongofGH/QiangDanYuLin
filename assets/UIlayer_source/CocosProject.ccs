@@ -51,6 +51,7 @@
                 <Image Name="add2.png" />
                 <Image Name="bg.png" />
                 <Image Name="frame.png" />
+                <Image Name="gold_bg.png" />
                 <Image Name="money.png" />
                 <Image Name="next.png" />
                 <Image Name="next2.png" />
@@ -62,8 +63,10 @@
                 <Image Name="yellow2.png" />
               </Folder>
               <Folder Name="ui_tips">
-                <Image Name="trap.png" />
                 <Image Name="head_lv.png" />
+                <Image Name="kuang2.png" />
+                <Image Name="trap.png" />
+                <Image Name="xueping.png" />
               </Folder>
               <Folder Name="win_lose_pause">
                 <Image Name="bg1.png" />
@@ -89,9 +92,6 @@
               </Folder>
             </Folder>
           </Folder>
-        </Folder>
-        <Folder Name="ui_tips">
-          <Image Name="trap.png" />
         </Folder>
         <Project Name="game_ui_tips.csd" Type="Layer" />
         <Project Name="GameLoseLayer.csd" Type="Layer" />

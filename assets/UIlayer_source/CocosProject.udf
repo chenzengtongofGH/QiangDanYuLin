@@ -25,14 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="game_ui_tips.csd" />
-          <FilePathData Path="GameLoseLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="game_ui_tips.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

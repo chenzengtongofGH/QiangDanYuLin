@@ -17,12 +17,22 @@ function CHero:ctor()
     self.diamond = 0;
     -- 体力
     self.Power = 0;
+    --护甲
+    self.defend = 0;
+    --炸弹量
+    self.Bomb_Count = 0;
+
 end
 
 function CHero:get_test_data()
     
 end
-
+function CHero:get_Bomb_count()
+    return self.Bomb_Count ;
+end
+function CHero:get_defend()
+    return self.defend ;
+end
 function CHero:set_item_num(Item_num)
     self.ItemNums = Item_num;
 end
