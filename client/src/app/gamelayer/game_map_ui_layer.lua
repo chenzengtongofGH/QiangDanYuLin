@@ -23,7 +23,7 @@ function game_map_ui_layer:init()
 
     local current_hp_label =  sg_ui.LabelTTF("100");
     ui_hp_sprite:addChild(current_hp_label);
-    current_hp_label:setPosition( ui_hp_sprite:getContentSize().width / 2, ui_hp_sprite:getContentSize().height / 2);
+    current_hp_label:setPosition( ui_hp_sprite:getContentSize().width / 2 * 3, ui_hp_sprite:getContentSize().height / 2);
     self.current_hp_label = current_hp_label;
  
     local Image_defend = sg_get_child_by_name(self.root_csb , "Image_defend")
@@ -98,7 +98,7 @@ function game_map_ui_layer:update_item_count()
     self.item_nums_label_TTF:setString(ShouLei_Name_L..G_Hero:get_item_num());
 end
 function game_map_ui_layer:set_current_hp(c_hp)
-    self.current_hp_label:setString(Hp_Name_L..c_hp);
+    self.current_hp_label:setString(c_hp);
 end
 
 

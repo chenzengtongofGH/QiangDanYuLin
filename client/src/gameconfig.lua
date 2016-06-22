@@ -162,6 +162,8 @@ Role_DIR_Point =
 Game_Max_Width = 1136 * 2;
 Game_Max_Heihgt = 640 *2 ;
 
+bool_use_rocker = true;
 
+Game_Igoner_Angle = 0.1;
 Hero_Id = 1;
 --endregion

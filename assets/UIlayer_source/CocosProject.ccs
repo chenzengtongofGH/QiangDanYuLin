@@ -67,6 +67,8 @@
                 <Image Name="kuang2.png" />
                 <Image Name="trap.png" />
                 <Image Name="xueping.png" />
+                <Image Name="circle_image.png" />
+                <Image Name="hp_image.png" />
               </Folder>
               <Folder Name="win_lose_pause">
                 <Image Name="bg1.png" />

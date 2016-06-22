@@ -29,16 +29,20 @@ function qdylGameLayer:ctor()
     self.Move_pos = {x=0,y=0};
     self.current_Touch_pos = {x = 0,y = 0};
     self.Role_Pos_Conver_Space ={x=0,y=0};
+    self.sin_angle,self.cos_angle = 0,0;
     self.bool_touch = false;
     self.Game_status = RUN_CONF.STATE.RUNNING;
     self.all_maprole_AI = {};
     self.fight_items = {};
+    self.rock_layer = Rock_UI_layer.new();
+    if bool_use_rocker then
+        self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
+    end
     self:init();
     
     self.monster_manager_list = monster_manager.new(self.UILayer);
-    self.rock_layer = Rock_UI_layer.new();
-    self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
-    self.rock_layer:setPosition(100,100);
+    
+    --self.rock_layer:setPosition(100,100);
 end
 function qdylGameLayer:realse()
     self:removeEvent();
@@ -76,82 +80,142 @@ function qdylGameLayer:TouchLayerE(touch, event)
     --print("TouchLayerB X:"..PosTab.x..",Y:"..PosTab.y);
     self.bool_touch = false;
 end
+function qdylGameLayer:setRole_Pos(sinAngle,cosAngle)
+    if sinAngle==0 and cosAngle == 0 then 
+        self.map_hero:StopRun();
+        return ;
+    end
+    --print("sinAngle:"..sinAngle..",cosAngle:"..cosAngle);
+    local speedx  = 0;
+    local speedy = 0;
+
+    if sinAngle >0 and cosAngle >0  or sinAngle<0 and cosAngle<0 then 
+        speedx = -Role_Move_Speed * cosAngle;
+        speedy = -Role_Move_Speed * sinAngle;
+    else
+        speedx = Role_Move_Speed * cosAngle;
+        speedy = Role_Move_Speed * sinAngle;
+    end
+
+    if cosAngle > 1- Game_Igoner_Angle and sinAngle<Game_Igoner_Angle then
+         speedx = 0;
+         speedy = -Role_Move_Speed;
+    elseif cosAngle < -(1-Game_Igoner_Angle) and sinAngle <Game_Igoner_Angle then 
+        speedx = 0;
+        speedy = Role_Move_Speed;
+    elseif sinAngle>1-Game_Igoner_Angle and cosAngle <Game_Igoner_Angle then 
+        speedx = -Role_Move_Speed;
+        speedy = 0;
+    elseif sinAngle<-(1-Game_Igoner_Angle) and cosAngle <Game_Igoner_Angle then 
+        speedx = Role_Move_Speed;
+        speedy = 0;
+    end
+    
+     --  math.cos(cosAngle);
+     --math.sin(sinAngle);
+    
+    self:set_Map_Move(speedx,speedy);
+end
+function qdylGameLayer:set_Map_Move(speedx,speedy)
+    self.map_hero:Run();
+    if speedx <= 0 then --1 4 
+        self.map_hero:setDir(FACE_DIR.RIGHT);
+    else
+        self.map_hero:setDir(FACE_DIR.LEFT); 
+    end
+ 
+    local ui_layer_posX = self.UILayer:getPositionX();
+    local ui_layer_posY = self.UILayer:getPositionY();
+    if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
+        self.UILayer:setPositionX(ui_layer_posX+speedx);
+    end
+
+           
+    if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(Game_Max_Heihgt - display.height) then --到达y边界
+        self.UILayer:setPositionY(ui_layer_posY+speedy);
+    end
+    self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
+end
 function qdylGameLayer:update()
     if self.map_hero:is_dead() then 
         gScheduler.unscheduleGlobal(self.updatetimer);
         self:game_over();
     end
-    if self.bool_touch then 
-           local des_x =  self.current_Touch_pos.x - display.cx;
-           local des_y = self.current_Touch_pos.y - display.cy;
-           --print("DesX:"..des_x..",DesY:"..des_y);
-           local three_line = math.sqrt(des_x*des_x + des_y*des_y);
-           local x_rad =  des_y / three_line;
-           local y_rad = des_x / three_line;
-           local speedx = 0;
-           local speedy = 0;
+    if not bool_use_rocker then 
+        if self.bool_touch then 
+               local des_x =  self.current_Touch_pos.x - display.cx;
+               local des_y = self.current_Touch_pos.y - display.cy;
+               --print("DesX:"..des_x..",DesY:"..des_y);
+               local three_line = math.sqrt(des_x*des_x + des_y*des_y);
+               local x_rad =  des_y / three_line;
+               local y_rad = des_x / three_line;
+               local speedx = 0;
+               local speedy = 0;
 
-           --print("CosX :"..math.cos(x_rad)..",SinX:"..math.sin(x_rad));
+               --print("CosX :"..math.cos(x_rad)..",SinX:"..math.sin(x_rad));
            
-           if des_x >0 and des_y>0 then --1
-                speedx = -Role_Move_Speed * math.cos(x_rad);
-                speedy = -Role_Move_Speed * math.sin(x_rad);
-           elseif des_x<0 and des_y>0 then --2
-                speedx = Role_Move_Speed * math.cos(x_rad);
-                speedy = -Role_Move_Speed * math.sin(x_rad);
-           elseif des_x >0 and des_y<0 then --4
-                speedx = -Role_Move_Speed * math.cos(y_rad);
-                speedy = Role_Move_Speed * math.sin(y_rad);
-           elseif des_x<0 and des_y<0 then --3
-                speedx = Role_Move_Speed * math.cos(y_rad);
-                speedy = -Role_Move_Speed * math.sin(y_rad);
-           end
-
-           self.map_hero:Run();
-           local need_line = 6;
-           if des_x >=0 then 
-             self.map_hero:setDir(FACE_DIR.RIGHT);
-           else
-             self.map_hero:setDir(FACE_DIR.LEFT); 
-           end
-           
-           if math.abs(des_x) <= need_line and des_y ~= 0 then 
-               if des_y >0 then --人要向上
-                    speedy = -1*Role_Move_Speed;--地图向下
-               else
-                    speedy = Role_Move_Speed;
+               if des_x >0 and des_y>0 then --1
+                    speedx = -Role_Move_Speed * math.cos(x_rad);
+                    speedy = -Role_Move_Speed * math.sin(x_rad);
+               elseif des_x<0 and des_y>0 then --2
+                    speedx = Role_Move_Speed * math.cos(x_rad);
+                    speedy = -Role_Move_Speed * math.sin(x_rad);
+               elseif des_x >0 and des_y<0 then --4
+                    speedx = -Role_Move_Speed * math.cos(y_rad);
+                    speedy = Role_Move_Speed * math.sin(y_rad);
+               elseif des_x<0 and des_y<0 then --3
+                    speedx = Role_Move_Speed * math.cos(y_rad);
+                    speedy = -Role_Move_Speed * math.sin(y_rad);
                end
-               speedx = 0;
-           end
 
-           if des_x~=0 and math.abs(des_y)<= need_line then 
-               if des_x >0 then --人要向右
-                    speedx = -1*Role_Move_Speed;--地图向左
+               self.map_hero:Run();
+               local need_line = 6;
+               if des_x >=0 then 
+                 self.map_hero:setDir(FACE_DIR.RIGHT);
                else
-                    speedx = Role_Move_Speed;
+                 self.map_hero:setDir(FACE_DIR.LEFT); 
                end
-               speedy = 0;
-           end
+           
+               if math.abs(des_x) <= need_line and des_y ~= 0 then 
+                   if des_y >0 then --人要向上
+                        speedy = -1*Role_Move_Speed;--地图向下
+                   else
+                        speedy = Role_Move_Speed;
+                   end
+                   speedx = 0;
+               end
 
-           local ui_layer_posX = self.UILayer:getPositionX();
-           local ui_layer_posY = self.UILayer:getPositionY();
-           if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
-                self.UILayer:setPositionX(ui_layer_posX+speedx);
-           end
+               if des_x~=0 and math.abs(des_y)<= need_line then 
+                   if des_x >0 then --人要向右
+                        speedx = -1*Role_Move_Speed;--地图向左
+                   else
+                        speedx = Role_Move_Speed;
+                   end
+                   speedy = 0;
+               end
+
+               local ui_layer_posX = self.UILayer:getPositionX();
+               local ui_layer_posY = self.UILayer:getPositionY();
+               if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
+                    self.UILayer:setPositionX(ui_layer_posX+speedx);
+               end
 
            
-           if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(Game_Max_Heihgt - display.height) then --到达y边界
-                self.UILayer:setPositionY(ui_layer_posY+speedy);
-           end
-           --convertToNodeSpace
-           self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
-           --local pos_2 = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
-           --local pos = self.map_hero:convertToNodeSpace(cc.p(ui_layer_posX,ui_layer_posY));
-           --print("Role:PosX:"..pos.x..",Pos2:"..pos_2.x);
-           --self.UILayer:setPosition(ui_layer_posX+speedx,ui_layer_posY+speedy);
+               if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(Game_Max_Heihgt - display.height) then --到达y边界
+                    self.UILayer:setPositionY(ui_layer_posY+speedy);
+               end
+               --convertToNodeSpace
+               self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
+               --local pos_2 = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
+               --local pos = self.map_hero:convertToNodeSpace(cc.p(ui_layer_posX,ui_layer_posY));
+               --print("Role:PosX:"..pos.x..",Pos2:"..pos_2.x);
+               --self.UILayer:setPosition(ui_layer_posX+speedx,ui_layer_posY+speedy);
 
-    else
-        self.map_hero:StopRun();
+        else
+            self.map_hero:StopRun();
+        end
+    else    
+        self:setRole_Pos(self.sin_angle,self.cos_angle);
     end
     self.monster_manager_list:update_monster(self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y);
     

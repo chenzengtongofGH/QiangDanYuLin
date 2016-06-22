@@ -9,10 +9,10 @@
           <AbstractNodeData Name="Panel_1" ActionTag="-299360894" Tag="2" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1136.0000" Y="640.0000" />
             <Children>
-              <AbstractNodeData Name="Button_bomb" ActionTag="-1577742545" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="980.7284" RightMargin="94.2716" TopMargin="469.1401" BottomMargin="91.8599" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="31" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_bomb" ActionTag="-1577742545" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="980.7672" RightMargin="94.2328" TopMargin="469.1720" BottomMargin="91.8280" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="31" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="61.0000" Y="79.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1011.2284" Y="131.3599" />
+                <Position X="1011.2672" Y="131.3280" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8902" Y="0.2052" />
@@ -24,70 +24,70 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_hp" ActionTag="1893277491" Tag="13" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="90.6158" RightMargin="925.3842" TopMargin="16.4957" BottomMargin="584.5043" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
-                <Size X="120.0000" Y="39.0000" />
+              <AbstractNodeData Name="Image_hp" ActionTag="1893277491" Tag="13" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="62.1336" RightMargin="1014.8664" TopMargin="11.9680" BottomMargin="580.0320" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="33" Scale9Height="22" ctype="ImageViewObjectData">
+                <Size X="59.0000" Y="48.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="150.6158" Y="604.0043" />
+                <Position X="91.6336" Y="604.0320" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1326" Y="0.9438" />
-                <PreSize X="0.1056" Y="0.0609" />
-                <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
+                <PrePosition X="0.0807" Y="0.9438" />
+                <PreSize X="0.0519" Y="0.0750" />
+                <FileData Type="Normal" Path="res/csb/ui/ui_tips/hp_image.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_defend" ActionTag="24073881" Tag="14" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="259.2438" RightMargin="756.7562" TopMargin="16.3773" BottomMargin="584.6227" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_defend" ActionTag="24073881" Tag="14" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="259.2160" RightMargin="756.7841" TopMargin="16.4040" BottomMargin="584.5960" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="120.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="319.2438" Y="604.1227" />
+                <Position X="319.2160" Y="604.0960" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.2810" Y="0.9439" />
                 <PreSize X="0.1056" Y="0.0609" />
                 <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_bomb" ActionTag="1342730167" Tag="15" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="419.3699" RightMargin="596.6301" TopMargin="15.1828" BottomMargin="585.8172" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_bomb" ActionTag="1342730167" Tag="15" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="419.3920" RightMargin="596.6080" TopMargin="15.1880" BottomMargin="585.8120" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="120.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="479.3699" Y="605.3172" />
+                <Position X="479.3920" Y="605.3120" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4220" Y="0.9458" />
                 <PreSize X="0.1056" Y="0.0609" />
                 <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_shoulei" ActionTag="1454041603" Tag="16" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="575.6010" RightMargin="440.3990" TopMargin="14.0500" BottomMargin="586.9500" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_shoulei" ActionTag="1454041603" Tag="16" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="575.5920" RightMargin="440.4080" TopMargin="14.0360" BottomMargin="586.9640" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="120.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="635.6010" Y="606.4500" />
+                <Position X="635.5920" Y="606.4640" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5595" Y="0.9476" />
                 <PreSize X="0.1056" Y="0.0609" />
                 <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_count" ActionTag="574094007" Tag="17" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="741.8839" RightMargin="274.1161" TopMargin="15.5187" BottomMargin="585.4813" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_count" ActionTag="574094007" Tag="17" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="741.9024" RightMargin="274.0976" TopMargin="15.5080" BottomMargin="585.4920" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="120.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="801.8839" Y="604.9813" />
+                <Position X="801.9024" Y="604.9920" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.7059" Y="0.9453" />
                 <PreSize X="0.1056" Y="0.0609" />
                 <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_time" ActionTag="697643156" Tag="18" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="892.0486" RightMargin="123.9514" TopMargin="17.0056" BottomMargin="583.9944" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_time" ActionTag="697643156" Tag="18" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="892.0816" RightMargin="123.9184" TopMargin="16.9800" BottomMargin="584.0200" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="57" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="120.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="952.0486" Y="603.4944" />
+                <Position X="952.0816" Y="603.5200" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8381" Y="0.9430" />
                 <PreSize X="0.1056" Y="0.0609" />
                 <FileData Type="Normal" Path="res/csb/ui/main/gold_bg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Button_pause" ActionTag="-852954659" Tag="19" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="1051.0554" RightMargin="24.9446" TopMargin="2.0837" BottomMargin="574.9163" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="41" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_pause" ActionTag="-852954659" Tag="19" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="1051.0176" RightMargin="24.9824" TopMargin="2.1000" BottomMargin="574.9000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="30" Scale9Height="41" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="60.0000" Y="63.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1081.0554" Y="606.4163" />
+                <Position X="1081.0176" Y="606.4000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9516" Y="0.9475" />
@@ -99,10 +99,10 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Button_change_bomb" ActionTag="-214004613" Tag="37" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="994.6935" RightMargin="10.3065" TopMargin="585.5908" BottomMargin="13.4092" TouchEnable="True" FontSize="14" ButtonText="点击更换子弹" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="101" Scale9Height="19" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_change_bomb" ActionTag="-214004613" Tag="37" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="994.7288" RightMargin="10.2712" TopMargin="585.5800" BottomMargin="13.4200" TouchEnable="True" FontSize="14" ButtonText="点击更换子弹" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="101" Scale9Height="19" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="131.0000" Y="41.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1060.1935" Y="33.9092" />
+                <Position X="1060.2288" Y="33.9200" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9333" Y="0.0530" />
