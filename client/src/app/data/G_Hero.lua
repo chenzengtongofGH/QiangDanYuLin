@@ -22,10 +22,19 @@ function CHero:ctor()
     --炸弹量
     self.Bomb_Count = 0;
 
+    self.zidan_count = 0;
 end
-
+function CHero:set_zidan_count(count)
+    self.zidan_count  = count;
+end
+function CHero:get_zidan_count()
+    return self.zidan_count ;
+end
 function CHero:get_test_data()
     
+end
+function CHero:set_Bomb_count(c)
+   self.Bomb_Count = c; 
 end
 function CHero:get_Bomb_count()
     return self.Bomb_Count ;

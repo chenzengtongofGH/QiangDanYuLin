@@ -10,6 +10,7 @@ function monster_manager:ctor(root_layer)
     self.root_width = root_layer:getContentSize().width;
     self.root_height = root_layer:getContentSize().height;
     self.play = false;
+    self.monster_z_order = 1;
 end
 function monster_manager:add_monster()
     local monster_db = Croledb_interface.new(10001);
@@ -62,6 +63,7 @@ function monster_manager:process(curtime,map_role,role_x,role_y)
         local three_line = math.sqrt(des_x*des_x + des_y*des_y);
         if three_line < attack_space then 
             if map_role:get_Can_Attack() then--发射一个子弹 
+                --如果子弹不够则不能攻击
                 map_role:attack_emnegy(curtime,v);
             end
         end
@@ -119,7 +121,7 @@ function monster_manager:update_monster(rolex,roley)
     
     local currentRole_pos_X = rolex;--self.root_layer:getPositionX() +  self.root_width * 3 / 2 
     local currentRole_pos_Y =roley;--self.root_layer:getPositionY() +self.root_height *3 / 2;
-    
+
     for k,v in pairs(self.monster_list) do --所有有东西朝一个点跑过去
         local monster_speed = v:get_role_info().speed / 100;
 
@@ -169,8 +171,10 @@ function monster_manager:update_monster(rolex,roley)
             end
             speedy = 0;
         end
+        local z_order = 1000000 - v:getPositionY();
         if math.abs(v:getPositionX()  - currentRole_pos_X) >= 10 or  math.abs(v:getPositionY()  - currentRole_pos_Y) >= 10  then 
-            v:setPosition(v:getPositionX() + speedx,v:getPositionY() + speedy)
+            v:setPosition(v:getPositionX() + speedx,v:getPositionY() + speedy);
+            v:setLocalZOrder(z_order)
         end  
         
 

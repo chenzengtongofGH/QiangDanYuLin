@@ -767,3 +767,22 @@ function G_TWO_ROLE_Next_POINT(b_role,e_role,speed)
         return b_role.x + speedx,b_role.y + speedy
 
 end
+
+--[[
+des     : 文字配置
+input   : id
+return  : 文字
+autor   : czt
+date    : 2016年6月23日
+--]]
+function G_GetString(id)
+ 	if not string_db then
+		string_db = G_Reload("app.conf.stringdb").stringName;
+	end		
+    local str = string_db[id];
+    if not str then
+        sg_log.warning("Can't find string config:" .. id);
+        return nil;
+    end
+	return str;   
+end

@@ -164,6 +164,13 @@ Game_Max_Heihgt = 640 *2 ;
 
 bool_use_rocker = true;
 
-Game_Igoner_Angle = 0.1;
+Game_Igoner_Angle = 0.1;--忽略角度
+
+
+Game_role_zidan_count = 2;--子弹容量
+Game_role_zidan_cd    = 5;--填弹cd
+
+Monster_des_width = 20;
+
 Hero_Id = 1;
 --endregion

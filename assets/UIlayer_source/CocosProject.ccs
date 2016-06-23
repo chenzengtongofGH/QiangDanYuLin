@@ -63,12 +63,13 @@
                 <Image Name="yellow2.png" />
               </Folder>
               <Folder Name="ui_tips">
+                <Image Name="circle_image.png" />
                 <Image Name="head_lv.png" />
+                <Image Name="hp_image.png" />
                 <Image Name="kuang2.png" />
                 <Image Name="trap.png" />
                 <Image Name="xueping.png" />
-                <Image Name="circle_image.png" />
-                <Image Name="hp_image.png" />
+                <Image Name="bomb_pop.png" />
               </Folder>
               <Folder Name="win_lose_pause">
                 <Image Name="bg1.png" />

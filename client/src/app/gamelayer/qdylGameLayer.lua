@@ -21,6 +21,8 @@ local envent_id_list =
     "Update_Current_Hp",
     "Event_Play_Bomb",
     "Event_Change_Bomb",
+    "Event_Rome_Zidan_Count",
+    "Event_Show_Zhuangdan_TTF",
 }
 
 function qdylGameLayer:ctor()
@@ -38,6 +40,8 @@ function qdylGameLayer:ctor()
     if bool_use_rocker then
         self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
     end
+    self.Map_Ui_Layer = Map_UI_Layer.new();
+    self:addChild(self.Map_Ui_Layer,View_Ozder.Top_UI_Z);
     self:init();
     
     self.monster_manager_list = monster_manager.new(self.UILayer);
@@ -97,16 +101,16 @@ function qdylGameLayer:setRole_Pos(sinAngle,cosAngle)
         speedy = Role_Move_Speed * sinAngle;
     end
 
-    if cosAngle > 1- Game_Igoner_Angle and sinAngle<Game_Igoner_Angle then
+    if cosAngle > 1- Game_Igoner_Angle and sinAngle<Game_Igoner_Angle then --90
          speedx = 0;
          speedy = -Role_Move_Speed;
-    elseif cosAngle < -(1-Game_Igoner_Angle) and sinAngle <Game_Igoner_Angle then 
+    elseif cosAngle < -(1-Game_Igoner_Angle) and sinAngle <Game_Igoner_Angle then-- 270
         speedx = 0;
         speedy = Role_Move_Speed;
-    elseif sinAngle>1-Game_Igoner_Angle and cosAngle <Game_Igoner_Angle then 
+    elseif sinAngle>1-Game_Igoner_Angle and cosAngle <Game_Igoner_Angle then --0
         speedx = -Role_Move_Speed;
         speedy = 0;
-    elseif sinAngle<-(1-Game_Igoner_Angle) and cosAngle <Game_Igoner_Angle then 
+    elseif sinAngle<-(1-Game_Igoner_Angle) and cosAngle <Game_Igoner_Angle then --180
         speedx = Role_Move_Speed;
         speedy = 0;
     end
@@ -237,6 +241,12 @@ function qdylGameLayer:process_Ai(cur_frame_interval)
     if self.map_hero:check_can_use(curtime) then 
         self.map_hero:set_Can_Attack(true);
     end
+    
+    if self.map_hero:get_next_zhuangdan_time()~= 0 and curtime > self.map_hero:get_next_zhuangdan_time() then 
+        self.map_hero.next_zhuangdan_time = 0;
+        self.map_hero:set_zidan(Game_role_zidan_count);
+        self.Map_Ui_Layer:show_zhuandan_ing(false); 
+    end
 
     if self.last_update_time == nil then
         self.last_update_time = curtime;
@@ -261,6 +271,9 @@ function qdylGameLayer:Play_Bomb_Action(Item_type)
     if G_Hero:get_item_num() <= 0 then 
         return ;
     end
+    if self.map_hero:get_play_BombIng() then 
+        return ;
+    end
     G_Hero:set_item_num(G_Hero:get_item_num() - 1);
     self.Map_Ui_Layer:update_item_count();
     local bomb_action_pos = self.Role_Pos_Conver_Space;
@@ -279,6 +292,9 @@ function qdylGameLayer:Play_Bomb_Action(Item_type)
 end
 function qdylGameLayer:change_role_bomb()
     print("change_role_bomb");
+end
+function qdylGameLayer:update_current_zidan()
+    self.Map_Ui_Layer:update_Bomb_count();
 end
 function qdylGameLayer:clear_space_damage(item_data)--清理对应的东西 
     --self.Role_Pos_Conver_Space.x,self.Role_Pos_Conver_Space.y
@@ -343,6 +359,7 @@ function qdylGameLayer:init()
 	self.Role_obj_Layer:addChild( self.map_hero );
     self.map_hero:setPosition(display.cx,display.cy);
     self.map_hero:set_hp(10);
+    --set_zidan_count
     self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
     
     --   self.map_hero:convertToNodeSpace(cc.p(self.UILayer:getPositionX(),self.UILayer:getPositionY()));
@@ -360,9 +377,9 @@ function qdylGameLayer:init()
     self.updatetimer = gScheduler.scheduleGlobal(function() if G_isUserDataValid(self) then self:update() end end, 0)
 
 
-    self.Map_Ui_Layer = Map_UI_Layer.new();
-    self:addChild(self.Map_Ui_Layer,View_Ozder.Top_UI_Z);
-    self:update_current_role_hp(self.map_hero:get_hp());
+    
+    self.Map_Ui_Layer:update_current_role(self.map_hero:get_hp());
+    
 
 end
 function qdylGameLayer:update_current_role_hp(hp)
@@ -413,6 +430,10 @@ function qdylGameLayer:OnEvent(event, ...)
         self:Play_Bomb_Action(args[1]);
     elseif event == "Event_Change_Bomb" then 
         self:change_role_bomb();
+    elseif event == "Event_Rome_Zidan_Count" then 
+        self:update_current_zidan();
+    elseif event == "Event_Show_Zhuangdan_TTF" then 
+        self.Map_Ui_Layer:show_zhuandan_ing(true);        
     end 
 end
 

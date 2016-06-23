@@ -69,8 +69,12 @@ function game_map_ui_layer:init()
     local Button_change_bomb = sg_get_child_by_name(self.root_csb,"Button_change_bomb");
     sg_ui.addTouchEventListener_music(Button_change_bomb,function() self:change_role_bomb() ;end );
     
-    
 
+    local zhuangdan_ing_TTF  = sg_ui.LabelTTF(G_GetString("ZhuangDan_Ing"));
+    self.root_csb:addChild(zhuangdan_ing_TTF);
+    zhuangdan_ing_TTF:setPosition(display.cx,display.cy + 100);
+    zhuangdan_ing_TTF:setVisible(false);
+    self.zhuangdan_ing_TTF = zhuangdan_ing_TTF;
 end
 function game_map_ui_layer:change_role_bomb()
     EventSystem:pushEvent("Event_Change_Bomb");
@@ -100,7 +104,20 @@ end
 function game_map_ui_layer:set_current_hp(c_hp)
     self.current_hp_label:setString(c_hp);
 end
-
+function game_map_ui_layer:update_current_role(hp)
+    self:set_current_hp(hp);
+    self:update_Bomb_count();
+end
+function game_map_ui_layer:show_zhuandan_ing(bool_show)
+    if bool_show then 
+        self.zhuangdan_ing_TTF:setVisible(true);
+        --self.zhuangdan_ing_TTF:runAction(cc.Blink:create(2,2));
+    else        
+        self.zhuangdan_ing_TTF:setVisible(false);
+        --self.zhuangdan_ing_TTF:stopAllActions();
+    end
+end
+--self:update_current_role_hp(self.map_hero:get_hp());
 
 return game_map_ui_layer;
 --endregion

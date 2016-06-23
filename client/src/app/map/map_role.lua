@@ -16,17 +16,32 @@ function CMapRole:ctor(id, role,scale,fight_layer)
     self.fight_layer = fight_layer;
     self.H_Stat = Hero_Action_Status.IDLE;
     self.can_attack = false;
+    self.Bombing = false;
     self.level = 1;
     self.timeline = 0;
     self.next_use_skill_time = 0;
     self.cur_hp = 1;
+    self.next_zhuangdan_time = 0;
     self:init();
     self:create_skill();
-    --self:create_debug_info();
+    self:set_zidan(Game_role_zidan_count);
+end
+function CMapRole:get_play_BombIng()
+    return self.Bombing;
 end
 function CMapRole:create_skill()
     self.Skill_data =  CSkill.new(self.role.skill_Id,self.level);
     --print("create_skill");
+end
+function CMapRole:set_zidan(count)
+    self.zidan_count = count;
+    if self.id == Hero_Id then 
+        G_Hero:set_Bomb_count(count);
+        EventSystem:pushEvent("Event_Rome_Zidan_Count");
+    end
+end
+function CMapRole:get_zidan()
+    return self.zidan_count;
 end
 function CMapRole:set_Can_Attack(bool_attack)
     self.can_attack = bool_attack;
@@ -69,7 +84,11 @@ function CMapRole:init()
         local equip_db = Cequipdb_interface.new(Equip_id);
         self:ChangeLeftWeapon(equip_db.equip_json);
     end
-
+    local bomb_sprite = CreateSprite("res#normal#ui#bomb#8_0");
+    bomb_sprite:addTo(self,3);
+    bomb_sprite:setVisible(false);
+    self.bomb_sprite = bomb_sprite;
+    self.bomb_sprite:setPosition(cc.p(0,self.bomb_sprite:getContentSize().height / 2));
     --self:create_render(self.init_modle_info); 
 end
 function CMapRole:add_bomb_action(item_data)
@@ -82,13 +101,16 @@ function CMapRole:add_bomb_action(item_data)
             local sprite_name = sg_loadResources(both_image_name..i);
             animation:addSpriteFrameWithFile(sprite_name);
         end
-        local bomb_sprite = CreateSprite(both_image_name .. "0");
-        bomb_sprite:addTo(self,3);
+        --local bomb_sprite = CreateSprite(both_image_name .. "0");
+        --bomb_sprite:addTo(self,3);
         --self:addChild(bomb_sprite); self.render:getContentSize();
-        bomb_sprite:setPosition(cc.p(0,bomb_sprite:getContentSize().height / 2));
+        self.Bombing = true;
+        self.bomb_sprite:setVisible(true);
+        self.bomb_sprite:setPosition(cc.p(0,self.bomb_sprite:getContentSize().height / 2));
         animation:setDelayPerUnit(0.1);
-        
-        bomb_sprite:runAction( cc.Sequence:create( cc.Animate:create(animation),cc.RemoveSelf:create() ));
+        local call_back = cc.CallFunc:create(function() self.bomb_sprite:setVisible(false); self.Bombing = false;  end );
+        --self.bomb_sprite:setVisible(false)
+        self.bomb_sprite:runAction( cc.Sequence:create( cc.Animate:create(animation),call_back ));
     end
     
 end
@@ -140,6 +162,9 @@ function CMapRole:attack_emnegy(curtime,target_role)--优化直接发射子弹 �
     if self:get_Can_Attack() then 
         
     end
+    if self:get_next_zhuangdan_time() ~= 0 and curtime < self:get_next_zhuangdan_time()  then 
+        return ;
+    end
     local skill  = self:get_Skill_data();
 
      local time = skill.conf.detail_delay;
@@ -157,6 +182,10 @@ function CMapRole:attack_emnegy(curtime,target_role)--优化直接发射子弹 �
         local result = skill:use(self.timeline, self,target_role);
         self:set_Can_Attack(false);
         self:set_next_skill_time(curtime);
+        self:set_zidan(self.zidan_count - 1);
+        if self.zidan_count == 0 then 
+            self:set_zhuangdan_time(curtime);
+        end        
         --curtime
     end
     skill:play_use_sound(self);
@@ -202,13 +231,18 @@ end
 function CMapRole:set_next_skill_time(current_time)
     self.next_use_skill_time = current_time + self.role.attack_cd * 1000;
 end
+function CMapRole:set_zhuangdan_time(current_time)
+    self.next_zhuangdan_time = current_time + Game_role_zidan_cd * 1000;
+    EventSystem:pushEvent("Event_Show_Zhuangdan_TTF");
+end
+function CMapRole:get_next_zhuangdan_time()
+    return self.next_zhuangdan_time;
+end
 function CMapRole:check_can_use(current_time)
     if current_time > self.next_use_skill_time  then 
         return true;
     end
     return false;
-    --self.attack_cd
-    --self.skill_cd_time
 end
 function CMapRole:update(interval)
     self.timeline = self.timeline + i;

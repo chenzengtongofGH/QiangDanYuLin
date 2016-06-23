@@ -33,7 +33,7 @@ function Croledb_interface:ctor(id)
         self.attack_cd    = info[14];--攻击速度
         self.attack_range = info[15];--攻击范围
         self.skill_Id        = info[16];--技能id
-        self.equip_Id_table  = info[17];
+        self.equip_Id_table  = info[17];--装备列表
     end
 end
 

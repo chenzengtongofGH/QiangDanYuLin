@@ -270,6 +270,7 @@ local ResPathTable=
 	["res#csb#ui#main#wordbg"]={"res/csb/ui/main/wordbg.png",0,"rgba8888"},
 	["res#csb#ui#main#yellow1"]={"res/csb/ui/main/yellow1.png",0,"rgba8888"},
 	["res#csb#ui#main#yellow2"]={"res/csb/ui/main/yellow2.png",0,"rgba8888"},
+	["res#csb#ui#ui_tips#bomb_pop"]={"res/csb/ui/ui_tips/bomb_pop.png",0,"rgba8888"},
 	["res#csb#ui#ui_tips#circle_image"]={"res/csb/ui/ui_tips/circle_image.png",0,"rgba8888"},
 	["res#csb#ui#ui_tips#gold"]={"res/csb/ui/ui_tips/gold.png",0,"rgba8888"},
 	["res#csb#ui#ui_tips#head_lv"]={"res/csb/ui/ui_tips/head_lv.png",0,"rgba8888"},
