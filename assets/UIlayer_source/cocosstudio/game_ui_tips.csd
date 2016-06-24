@@ -9,27 +9,27 @@
           <AbstractNodeData Name="Panel_1" ActionTag="-299360894" Tag="2" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1136.0000" Y="640.0000" />
             <Children>
-              <AbstractNodeData Name="Image_bomb_back" ActionTag="1666950623" Tag="12" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="951.5001" RightMargin="59.5000" TopMargin="457.0000" BottomMargin="47.0000" LeftEage="41" RightEage="41" TopEage="44" BottomEage="44" Scale9OriginX="41" Scale9OriginY="44" Scale9Width="43" Scale9Height="48" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_bomb_back" ActionTag="1666950623" Tag="12" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="951.4936" RightMargin="59.5063" TopMargin="456.9920" BottomMargin="47.0080" LeftEage="41" RightEage="41" TopEage="44" BottomEage="44" Scale9OriginX="41" Scale9OriginY="44" Scale9Width="43" Scale9Height="48" ctype="ImageViewObjectData">
                 <Size X="125.0000" Y="136.0000" />
                 <Children>
-                  <AbstractNodeData Name="Button_bomb" ActionTag="-1577742545" Tag="5" IconVisible="False" LeftMargin="31.7750" RightMargin="32.2250" TopMargin="16.5928" BottomMargin="40.4072" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="31" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                    <Size X="61.0000" Y="79.0000" />
+                  <AbstractNodeData Name="Button_bomb" ActionTag="-1577742545" Tag="5" IconVisible="False" LeftMargin="36.2750" RightMargin="36.7250" TopMargin="25.5928" BottomMargin="49.4072" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="22" Scale9Height="39" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="52.0000" Y="61.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.2750" Y="79.9072" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4982" Y="0.5876" />
-                    <PreSize X="0.4880" Y="0.5809" />
+                    <PreSize X="0.4160" Y="0.4485" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="res/csb/ui/ui_tips/trap.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="res/csb/ui/ui_tips/trap.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="res/csb/ui/ui_tips/trap.png" Plist="" />
+                    <DisabledFileData Type="Normal" Path="res/csb/ui/ui_tips/bomb_btn2.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="res/csb/ui/ui_tips/bomb_btn2.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="res/csb/ui/ui_tips/bomb_btn1.png" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1014.0001" Y="115.0000" />
+                <Position X="1013.9936" Y="115.0080" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8926" Y="0.1797" />

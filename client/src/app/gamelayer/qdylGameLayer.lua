@@ -20,7 +20,7 @@ local envent_id_list =
     "Remove_Role_In_Map",
     "Update_Current_Hp",
     "Event_Play_Bomb",
-    "Event_Change_Bomb",
+    "Event_TianChong_Bomb",
     "Event_Rome_Zidan_Count",
     "Event_Show_Zhuangdan_TTF",
 }
@@ -290,7 +290,11 @@ function qdylGameLayer:Play_Bomb_Action(Item_type)
     self:clear_space_damage(item_data);
     --print("play_bomb");
 end
-function qdylGameLayer:change_role_bomb()
+function qdylGameLayer:TianChong_role_bomb()
+    --TianChong_role_bomb
+    self.map_hero:set_zhuangdan_time(g_gettime());
+    self.map_hero.zidan_count = 0;
+    --self:set_zidan(self.zidan_count - 1);
     print("change_role_bomb");
 end
 function qdylGameLayer:update_current_zidan()
@@ -428,8 +432,8 @@ function qdylGameLayer:OnEvent(event, ...)
         self:update_current_role_hp(args[1]);
     elseif event == "Event_Play_Bomb" then 
         self:Play_Bomb_Action(args[1]);
-    elseif event == "Event_Change_Bomb" then 
-        self:change_role_bomb();
+    elseif event == "Event_TianChong_Bomb" then 
+        self:TianChong_role_bomb();
     elseif event == "Event_Rome_Zidan_Count" then 
         self:update_current_zidan();
     elseif event == "Event_Show_Zhuangdan_TTF" then 

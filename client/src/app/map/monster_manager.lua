@@ -175,9 +175,26 @@ function monster_manager:update_monster(rolex,roley)
         if math.abs(v:getPositionX()  - currentRole_pos_X) >= 10 or  math.abs(v:getPositionY()  - currentRole_pos_Y) >= 10  then 
             v:setPosition(v:getPositionX() + speedx,v:getPositionY() + speedy);
             v:setLocalZOrder(z_order)
-        end  
-        
-
+        end          
+    end
+    self:check_offset_Position();
+end
+function monster_manager:check_offset_Position()
+    for k,v in pairs(self.monster_list) do --设置重叠的偏移量
+        if G_isUserDataValid(v) then 
+            local need_offset_count = 0;
+            for k1,v1 in pairs(self.monster_list) do 
+                if k~=k1 then --跟每个进行比较
+                    if math.abs(v1:getPositionX() - v:getPositionX()) < Monster_des_width  and  math.abs(v1:getPositionY() - v:getPositionY()) < Monster_des_width then 
+                        v1:setPositionX(v1:getPositionX() - Monster_offset_width);
+                        --need_offset_count = need_offset_count + 1;
+                    end
+                end
+            end
+            --if need_offset_count ~= 0 then 
+            --    v:setPositionX(v:getPositionX() -  need_offset_count * Monster_offset_width);
+            --end 
+        end
     end
 end
 return monster_manager;

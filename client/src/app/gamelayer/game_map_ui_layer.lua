@@ -77,7 +77,7 @@ function game_map_ui_layer:init()
     self.zhuangdan_ing_TTF = zhuangdan_ing_TTF;
 end
 function game_map_ui_layer:change_role_bomb()
-    EventSystem:pushEvent("Event_Change_Bomb");
+    EventSystem:pushEvent("Event_TianChong_Bomb");
 end
 function game_map_ui_layer:pause_game()
     print("pause_game") ;
@@ -111,13 +111,10 @@ end
 function game_map_ui_layer:show_zhuandan_ing(bool_show)
     if bool_show then 
         self.zhuangdan_ing_TTF:setVisible(true);
-        --self.zhuangdan_ing_TTF:runAction(cc.Blink:create(2,2));
     else        
-        self.zhuangdan_ing_TTF:setVisible(false);
-        --self.zhuangdan_ing_TTF:stopAllActions();
+        self.zhuangdan_ing_TTF:setVisible(false); 
     end
 end
---self:update_current_role_hp(self.map_hero:get_hp());
 
 return game_map_ui_layer;
 --endregion
