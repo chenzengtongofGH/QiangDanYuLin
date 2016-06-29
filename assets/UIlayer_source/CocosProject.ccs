@@ -63,6 +63,8 @@
                 <Image Name="yellow2.png" />
               </Folder>
               <Folder Name="ui_tips">
+                <Image Name="bomb_btn1.png" />
+                <Image Name="bomb_btn2.png" />
                 <Image Name="bomb_pop.png" />
                 <Image Name="circle_image.png" />
                 <Image Name="head_lv.png" />
@@ -70,8 +72,6 @@
                 <Image Name="kuang2.png" />
                 <Image Name="trap.png" />
                 <Image Name="xueping.png" />
-                <Image Name="bomb_btn1.png" />
-                <Image Name="bomb_btn2.png" />
               </Folder>
               <Folder Name="win_lose_pause">
                 <Image Name="bg1.png" />
@@ -95,9 +95,52 @@
                 <Image Name="winword2.png" />
                 <Image Name="yellowlight.png" />
               </Folder>
+              <Folder Name="leveldetails">
+                <Image Name="1_L.png" />
+                <Image Name="1_n.png" />
+                <Image Name="2_L.png" />
+                <Image Name="2_n.png" />
+                <Image Name="3_L.png" />
+                <Image Name="3_n.png" />
+                <Image Name="4_L.png" />
+                <Image Name="4_n.png" />
+                <Image Name="5_L.png" />
+                <Image Name="5_n.png" />
+                <Image Name="6_L.png" />
+                <Image Name="6_n.png" />
+                <Image Name="bg.png" />
+                <Image Name="bg_mibai2.png" />
+                <Image Name="bg_mibai3.png" />
+                <Image Name="boxlevel1.png" />
+                <Image Name="boxlevel2.png" />
+                <Image Name="btn_equipsell1.png" />
+                <Image Name="btn_equipsell2.png" />
+                <Image Name="chengjiu.png" />
+                <Image Name="chengjiu1.png" />
+                <Image Name="config.png" />
+                <Image Name="di_black.png" />
+                <Image Name="di2.png" />
+                <Image Name="diamond.png" />
+                <Image Name="first.png" />
+                <Image Name="flower.png" />
+                <Image Name="k_7.png" />
+                <Image Name="k_8.png" />
+                <Image Name="left_9s1.png" />
+                <Image Name="left_9s2.png" />
+                <Image Name="levelgem.png" />
+                <Image Name="light.png" />
+                <Image Name="music_close.png" />
+                <Image Name="music_off.png" />
+                <Image Name="music_open.png" />
+                <Image Name="txt_1.png" />
+                <Image Name="win_star.png" />
+                <Image Name="yeqian_light.png" />
+                <Image Name="yeqian_normal.png" />
+              </Folder>
             </Folder>
           </Folder>
         </Folder>
+        <Image Name="1_L.png" />
         <Project Name="game_ui_tips.csd" Type="Layer" />
         <Project Name="GameLoseLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
