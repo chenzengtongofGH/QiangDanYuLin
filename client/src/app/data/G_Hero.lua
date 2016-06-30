@@ -21,8 +21,17 @@ function CHero:ctor()
     self.defend = 0;
     --炸弹量
     self.Bomb_Count = 0;
-
+    --子弹数量
     self.zidan_count = 0;
+    --当前星星数
+    self.get_star_count = 0;
+    
+end
+function CHero:get_money()
+    return self.Money;
+end
+function CHero:get_Star_count()
+    return self.get_star_count;
 end
 function CHero:set_zidan_count(count)
     self.zidan_count  = count;
