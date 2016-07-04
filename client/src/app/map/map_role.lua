@@ -25,6 +25,7 @@ function CMapRole:ctor(id, role,scale,fight_layer)
     self:init();
     self:create_skill();
     self:set_zidan(Game_role_zidan_count);
+    self:create_debug_info();   
 end
 function CMapRole:get_play_BombIng()
     return self.Bombing;
@@ -63,7 +64,11 @@ function CMapRole:create_debug_info()
     self.ai_state = sg_ui.LabelTTF("-1", nil, 60);
     self.ai_state:setPosition(LOG_W/2, LOG_W/2 + 10);
     self.ai_state:setColor(cc.c3b(255,255,255));
-
+    if self.id == Hero_Id then 
+        local draw = cc.DrawNode:create()
+        self:addChild(draw, 10)
+        draw:drawRect(cc.p(-self.render_size.width/2,0), cc.p(self.render_size.width,self.render_size.height), cc.c4f(1,0,0,1))
+    end
     --self.hp_label = sg_ui.LabelTTF(self.cur_hp .. "/" .. self.max_hp, nil, 32);
     --self.hp_label:setPosition(LOG_W/2, 13);
     --self.hp_label:setColor(cc.c3b(255,255,255));
@@ -72,10 +77,16 @@ function CMapRole:create_debug_info()
     --self.log_layer:addChild(self.hp_label);
     self.log_layer:setVisible(SHOW_DEBUG);
 end
+function CMapRole:get_size()
+    return self.render_size;
+end
 function CMapRole:init()
     self.render = sg_create_armature(self.role.RoleJS);
     self.render:setScale(self:get_conf_scale());
     local render_size = self.render:getContentSize();
+    self.render_size = render_size ;--;render_size.width * self:get_conf_scale() ;
+    self.render_size.width = self.render_size.width * self:get_conf_scale();
+    self.render_size.height = self.render_size.height  * self:get_conf_scale();
     self.render:addTo(self,2);
     local equip_info = self.role.equip_Id_table;
 

@@ -9,6 +9,7 @@
               <Folder Name="buttons">
                 <Image Name="b_2.png" />
                 <Image Name="b_3.png" />
+                <Image Name="b_4.png" />
                 <Image Name="btn_gray.png" />
                 <Image Name="btn_light.png" />
                 <Image Name="btn_normal.png" />
@@ -32,6 +33,63 @@
                 <Image Name="jianbian.png" />
                 <Image Name="jindu.png" />
                 <Image Name="zhan.png" />
+              </Folder>
+              <Folder Name="game_role_layer">
+                <Image Name="a.png" />
+                <Image Name="a_gray.png" />
+                <Image Name="b.png" />
+                <Image Name="b_gray.png" />
+                <Image Name="bg_alluse1.png" />
+                <Image Name="c.png" />
+                <Image Name="c_gray.png" />
+                <Image Name="close.png" />
+                <Image Name="close2.png" />
+                <Image Name="gaikuang.png" />
+                <Image Name="returnback.png" />
+                <Image Name="s.png" />
+                <Image Name="s_gray.png" />
+              </Folder>
+              <Folder Name="leveldetails">
+                <Image Name="1_L.png" />
+                <Image Name="1_n.png" />
+                <Image Name="2_L.png" />
+                <Image Name="2_n.png" />
+                <Image Name="3_L.png" />
+                <Image Name="3_n.png" />
+                <Image Name="4_L.png" />
+                <Image Name="4_n.png" />
+                <Image Name="5_L.png" />
+                <Image Name="5_n.png" />
+                <Image Name="6_L.png" />
+                <Image Name="6_n.png" />
+                <Image Name="bg.png" />
+                <Image Name="bg_mibai2.png" />
+                <Image Name="bg_mibai3.png" />
+                <Image Name="boxlevel1.png" />
+                <Image Name="boxlevel2.png" />
+                <Image Name="btn_equipsell1.png" />
+                <Image Name="btn_equipsell2.png" />
+                <Image Name="chengjiu.png" />
+                <Image Name="chengjiu1.png" />
+                <Image Name="config.png" />
+                <Image Name="di_black.png" />
+                <Image Name="di2.png" />
+                <Image Name="diamond.png" />
+                <Image Name="first.png" />
+                <Image Name="flower.png" />
+                <Image Name="k_7.png" />
+                <Image Name="k_8.png" />
+                <Image Name="left_9s1.png" />
+                <Image Name="left_9s2.png" />
+                <Image Name="levelgem.png" />
+                <Image Name="light.png" />
+                <Image Name="music_close.png" />
+                <Image Name="music_off.png" />
+                <Image Name="music_open.png" />
+                <Image Name="txt_1.png" />
+                <Image Name="win_star.png" />
+                <Image Name="yeqian_light.png" />
+                <Image Name="yeqian_normal.png" />
               </Folder>
               <Folder Name="login">
                 <Image Name="bgnew.png" />
@@ -95,56 +153,14 @@
                 <Image Name="winword2.png" />
                 <Image Name="yellowlight.png" />
               </Folder>
-              <Folder Name="leveldetails">
-                <Image Name="1_L.png" />
-                <Image Name="1_n.png" />
-                <Image Name="2_L.png" />
-                <Image Name="2_n.png" />
-                <Image Name="3_L.png" />
-                <Image Name="3_n.png" />
-                <Image Name="4_L.png" />
-                <Image Name="4_n.png" />
-                <Image Name="5_L.png" />
-                <Image Name="5_n.png" />
-                <Image Name="6_L.png" />
-                <Image Name="6_n.png" />
-                <Image Name="bg.png" />
-                <Image Name="bg_mibai2.png" />
-                <Image Name="bg_mibai3.png" />
-                <Image Name="boxlevel1.png" />
-                <Image Name="boxlevel2.png" />
-                <Image Name="btn_equipsell1.png" />
-                <Image Name="btn_equipsell2.png" />
-                <Image Name="chengjiu.png" />
-                <Image Name="chengjiu1.png" />
-                <Image Name="config.png" />
-                <Image Name="di_black.png" />
-                <Image Name="di2.png" />
-                <Image Name="diamond.png" />
-                <Image Name="first.png" />
-                <Image Name="flower.png" />
-                <Image Name="k_7.png" />
-                <Image Name="k_8.png" />
-                <Image Name="left_9s1.png" />
-                <Image Name="left_9s2.png" />
-                <Image Name="levelgem.png" />
-                <Image Name="light.png" />
-                <Image Name="music_close.png" />
-                <Image Name="music_off.png" />
-                <Image Name="music_open.png" />
-                <Image Name="txt_1.png" />
-                <Image Name="win_star.png" />
-                <Image Name="yeqian_light.png" />
-                <Image Name="yeqian_normal.png" />
-              </Folder>
             </Folder>
           </Folder>
         </Folder>
-        <Image Name="1_L.png" />
         <Project Name="game_ui_tips.csd" Type="Layer" />
         <Project Name="GameLoseLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="Game_Role_Detail.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

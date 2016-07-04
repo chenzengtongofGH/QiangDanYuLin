@@ -1,10 +1,21 @@
-<UserData Version="2.3.3.0">
+<UserData Version="3.10.0.0">
   <Properties>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
         <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="map_1.csd" />
+          <FilePathData Path="map_2.csd" />
+          <FilePathData Path="new_map_1.csd" />
+          <FilePathData Path="map_9.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="new_map_1.csd" />
       </Value>
     </Item>
   </Properties>

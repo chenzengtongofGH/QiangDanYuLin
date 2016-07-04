@@ -174,4 +174,8 @@ Monster_des_width = 20;--当宽度小于这个数的时候,进行控制偏移位
 Monster_offset_width = 20;
 
 Hero_Id = 1;
+
+TIELD_MAP_SCALE= 0.7;
+
+Map_Data_Info = nil;
 --endregion

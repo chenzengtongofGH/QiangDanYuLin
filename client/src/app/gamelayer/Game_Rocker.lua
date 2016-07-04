@@ -34,7 +34,7 @@ function Game_Rocker:ctor()
 end
 
 function Game_Rocker:init()
-    local rock_sprite = CreateSprite("res#csb#ui#ui_tips#circle_image");
+    local rock_sprite = CreateSprite(Map_Data_Info[1]);
     self:addChild(rock_sprite);
     rock_sprite:setPosition(cc.p(100,100));
     self.rock_sprite = rock_sprite;
@@ -44,7 +44,7 @@ function Game_Rocker:init()
     self:setThumbRadius(32);
     self:setDeadRadius(0);
 
-    local point_sprite = CreateSprite("res#csb#ui#ui_tips#ui_circle_center");
+    local point_sprite = CreateSprite(Map_Data_Info[2]);
     
     self.point_sprite = point_sprite;
 

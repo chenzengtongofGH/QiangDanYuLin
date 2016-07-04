@@ -12,6 +12,7 @@ local Rock_UI_layer = require("app.gamelayer.Game_Rocker")
 require("app.map.map_role")
 require("app.fight.fight_itembase");
 require("app.fight.fight_moveitem");
+require("app.map.map_main")
 local envent_id_list = 
 {
     "EVENT_ADD_FIGHTITEM_TO_LIST",
@@ -36,15 +37,16 @@ function qdylGameLayer:ctor()
     self.Game_status = RUN_CONF.STATE.RUNNING;
     self.all_maprole_AI = {};
     self.fight_items = {};
-    self.rock_layer = Rock_UI_layer.new();
-    if bool_use_rocker then
-        self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
-    end
+    
     self.Map_Ui_Layer = Map_UI_Layer.new();
     self:addChild(self.Map_Ui_Layer,View_Ozder.Top_UI_Z);
     self:init();
     
     self.monster_manager_list = monster_manager.new(self.UILayer);
+    self.rock_layer = Rock_UI_layer.new();
+    if bool_use_rocker then
+        self:addChild(self.rock_layer,View_Ozder.Top_UI_Z);
+    end
     
     --self.rock_layer:setPosition(100,100);
 end
@@ -115,8 +117,7 @@ function qdylGameLayer:setRole_Pos(sinAngle,cosAngle)
         speedy = 0;
     end
     
-     --  math.cos(cosAngle);
-     --math.sin(sinAngle);
+
     
     self:set_Map_Move(speedx,speedy);
 end
@@ -130,6 +131,17 @@ function qdylGameLayer:set_Map_Move(speedx,speedy)
  
     local ui_layer_posX = self.UILayer:getPositionX();
     local ui_layer_posY = self.UILayer:getPositionY();
+    
+
+    local temp_role_pos = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
+    --temp_role_pos
+    local Next_X = temp_role_pos.x + -1*speedx;
+    local Next_Y = temp_role_pos.y + -1*speedy;
+    local rect_role = cc.rect(Next_X,Next_Y,self.map_hero:get_size().width,self.map_hero:get_size().height);
+    if self.root_csb_layer:update_blocks(Next_X,Next_Y,rect_role) then 
+        return ;
+    end
+
     if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
         self.UILayer:setPositionX(ui_layer_posX+speedx);
     end
@@ -171,50 +183,8 @@ function qdylGameLayer:update()
                     speedx = Role_Move_Speed * math.cos(y_rad);
                     speedy = -Role_Move_Speed * math.sin(y_rad);
                end
-
-               self.map_hero:Run();
-               local need_line = 6;
-               if des_x >=0 then 
-                 self.map_hero:setDir(FACE_DIR.RIGHT);
-               else
-                 self.map_hero:setDir(FACE_DIR.LEFT); 
-               end
-           
-               if math.abs(des_x) <= need_line and des_y ~= 0 then 
-                   if des_y >0 then --人要向上
-                        speedy = -1*Role_Move_Speed;--地图向下
-                   else
-                        speedy = Role_Move_Speed;
-                   end
-                   speedx = 0;
-               end
-
-               if des_x~=0 and math.abs(des_y)<= need_line then 
-                   if des_x >0 then --人要向右
-                        speedx = -1*Role_Move_Speed;--地图向左
-                   else
-                        speedx = Role_Move_Speed;
-                   end
-                   speedy = 0;
-               end
-
-               local ui_layer_posX = self.UILayer:getPositionX();
-               local ui_layer_posY = self.UILayer:getPositionY();
-               if ui_layer_posX + speedx >-(Game_Max_Width - display.width)   and ui_layer_posX + speedx < 0 then--到达x的边界 
-                    self.UILayer:setPositionX(ui_layer_posX+speedx);
-               end
-
-           
-               if ui_layer_posY + speedy < 0 and ui_layer_posY + speedy > -(Game_Max_Heihgt - display.height) then --到达y边界
-                    self.UILayer:setPositionY(ui_layer_posY+speedy);
-               end
-               --convertToNodeSpace
-               self.Role_Pos_Conver_Space = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
-               --local pos_2 = self.UILayer:convertToNodeSpace(cc.p(self.map_hero:getPositionX(),self.map_hero:getPositionY()));
-               --local pos = self.map_hero:convertToNodeSpace(cc.p(ui_layer_posX,ui_layer_posY));
-               --print("Role:PosX:"..pos.x..",Pos2:"..pos_2.x);
-               --self.UILayer:setPosition(ui_layer_posX+speedx,ui_layer_posY+speedy);
-
+               self:set_Map_Move(speedx,speedy);
+               
         else
             self.map_hero:StopRun();
         end
@@ -332,26 +302,35 @@ function qdylGameLayer:init()
     self:addChild(self.rootLayer);
 
     self.map_db = sg_getMapDBinfo(101);
-    self.UILayer = display.newLayer();
-    --self.UILayer:setAnchorPoint(0,0);
-    self.rootLayer:addChild(self.UILayer);
-    local image1 = CreateSprite(self.map_db[1]);
-    --image1:setAnchorPoint(0,0);
-    self.UILayer:addChild(image1);
-    image1:setPosition(image1:getContentSize().width/2,image1:getContentSize().height/2);
 
-    local image2 = CreateSprite(self.map_db[2]);
-    self.UILayer:addChild(image2);
-    image2:setPosition(image1:getContentSize().width +image2:getContentSize().width/2 ,image1:getContentSize().height/2);
+    self.root_csb_layer = CMapMain.new(101);
+    self.rootLayer:addChild(self.root_csb_layer.root_layer);
+
+    self.UILayer = self.root_csb_layer.root_layer--display.newLayer();
+    self.UILayer:setPosition(cc.p(-display.cx,-100))
+    local size   = self.root_csb_layer:get_size();
+    Game_Max_Width = size.width;
+    Game_Max_Heihgt = size.height;
+
+    --self.UILayer:setAnchorPoint(0,0);
+    --self.rootLayer:addChild(self.UILayer);
+    --local image1 = CreateSprite(self.map_db[1]);
+    ----image1:setAnchorPoint(0,0);
+    --self.UILayer:addChild(image1);
+    --image1:setPosition(image1:getContentSize().width/2,image1:getContentSize().height/2);
+
+    --local image2 = CreateSprite(self.map_db[2]);
+    --self.UILayer:addChild(image2);
+    --image2:setPosition(image1:getContentSize().width +image2:getContentSize().width/2 ,image1:getContentSize().height/2);
    
-    local image3 = CreateSprite(self.map_db[3]);
-    self.UILayer:addChild(image3);
-    image3:setPosition(image3:getContentSize().width/2 ,image1:getContentSize().height + image3:getContentSize().height / 2);
+    --local image3 = CreateSprite(self.map_db[3]);
+    --self.UILayer:addChild(image3);
+    --image3:setPosition(image3:getContentSize().width/2 ,image1:getContentSize().height + image3:getContentSize().height / 2);
  
 
-    local image4 = CreateSprite(self.map_db[4][1]);
-    self.UILayer:addChild(image4);
-    image4:setPosition(image3:getContentSize().width +image4:getContentSize().width/2 ,image3:getContentSize().height + image4:getContentSize().height / 2);
+    --local image4 = CreateSprite(self.map_db[4][1]);
+    --self.UILayer:addChild(image4);
+    --image4:setPosition(image3:getContentSize().width +image4:getContentSize().width/2 ,image3:getContentSize().height + image4:getContentSize().height / 2);
 
     print("self.UILayer：　ｐｏｓ："..self.UILayer:getPositionX());
     --self.UILayer:setPosition(-1136 / 2,-640 / 2);

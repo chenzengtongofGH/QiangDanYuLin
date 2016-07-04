@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="MainScene" Type="Scene" ID="a39d8dd6-4ff8-436f-ade0-ad783a359c82" Version="2.3.3.0" />
+  <PropertyGroup Name="MainScene" Type="Scene" ID="a39d8dd6-4ff8-436f-ade0-ad783a359c82" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
